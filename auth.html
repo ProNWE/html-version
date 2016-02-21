@@ -22,7 +22,7 @@
     <div class="central-box">
     	<div class="panel">
     		<div class="panel-heading text-center">
-    			<a href="#">
+    			<a href="">
     				<img src="img/logo.png" alt="NWE" class="">
     			</a>
     		</div>
@@ -31,7 +31,7 @@
     			<p class="text-center pv">Авторизуйтесь, чтобы продолжить</p>
 				<form action="" method="POST">
 					<div class="form-group">
-						<input type="email" id="email" required name="login" autocomplete="off">
+						<input type="email" id="email" required name="login" autocomplete="off" axlength="100">
 						<div class="label-box">
 							<label>Email</label>
 						</div>
@@ -39,7 +39,7 @@
 					
 					</div>
 					<div class="form-group">
-						<input type="password" id="pass" required name="password" autocomplete="off">
+						<input type="password" class="password" id="pass" required name="password" maxlength="20">
 						<div class="label-box">
 							<label>Пароль</label>
 						</div>
@@ -47,7 +47,7 @@
 					</div>
 					<p class="text-right" onclick="showReset()"><span class="pronwe_Link-small color-gr">Забыли пароль?</span></p>
 
-					<button id="sigin-button" type="submit" class="btn">Войти</button>
+					<button type="submit" id="sigin-button" type="submit" class="btn">Войти</button>
 
 					<p class="text-center" onclick="showReg()"><span class="pronwe_Link-small">Моментальная регистрация</span></p>
 				</form>    			
@@ -57,21 +57,21 @@
     			<p class="text-center pv">Регистрация</p>
 				<form action="" method="POST" style="">
 					<div class="form-group">
-						<input type="email" id="signup-email" required>
+						<input type="email" required name="signup-email" id="signup-email" maxlength="100">
 						<div class="label-box">
 							<label>Email</label>
 						</div>
 						<span class="fa fa-envelope form-icon icon-color"></span>
 					</div>
 					<div class="form-group">
-						<input type="password" id="signup-pass" required>
+						<input type="password" class="password" required name="password1" id="password1" maxlength="20" title="Введите не менее 6 символов">
 						<div class="label-box">
 							<label>Пароль</label>
 						</div>
 						<span class="fa fa-lock form-icon icon-color"></span>
 					</div>
 					<div class="form-group">
-						<input type="password" id="signup-pass2" required>
+						<input type="password" class="password" required name="confirm_password" id="confirm_password" maxlength="20" title="Введите не менее 6 символов">
 						<div class="label-box">
 							<label>Подтвердите пароль</label>
 						</div>
@@ -80,7 +80,7 @@
 					<div class="form-group">
 						<center>Капча</center>
 					</div>
-					<button id="signup-button" class="btn">Создать акаунт</button>
+					<button type="submit" class="btn" id="signup-button" disabled>Создать акаунт</button>
 					<p class="text-center" onclick="ReshowReg()"><span class="pronwe_Link-small">На страницу авторизации</span></p>
 				</form>
 			</div>
@@ -89,7 +89,7 @@
 				<p class="text-center pv">Введите емайл, чтобы получить инструкцию по востановлению пароля</p>
 				<form action="" method="POST" style="">
 					<div class="form-group">
-						<input type="email" id="reset-email" required autocomplete="off">
+						<input type="email" id="reset-email" required autocomplete="off" maxlength="100">
 						<div class="label-box">
 							<label>Email</label>
 						</div>
@@ -98,7 +98,7 @@
 					<div class="form-group">
 						<center>Капча</center>
 					</div>
-					<button id="reset-button" class="btn">Восставновить</button>
+					<button type="submit" id="reset-button" class="btn">Восставновить</button>
 					<p class="text-center" onclick="ReshowReset()"><span class="pronwe_Link-small">На страницу авторизации</span></p>
 				</form>
 			</div>
@@ -107,7 +107,7 @@
 	</div>
 
 	<!-- JS -->
-	<script src="js/jquery-1.12.0.min.js"></script>
+	<script src="js/jquery-2.2.0.min.js"></script>
 	<script>
 		function showReg()
 		{
@@ -129,6 +129,40 @@
 			document.getElementById('signin').style.display='block';
 			document.getElementById('reset').style.display='none';
 		}
+	</script>
+	<script>
+		var button = document.getElementById("signup-button");
+		$('#confirm_password').on('change', function() {
+			var conf = $(this).val();
+			var pass = $('#password1').val();
+
+			if (conf == pass && pass.length > 5)
+			{	
+				$(this).css('background-color', 'rgba(0, 200, 0, 0.3)');
+				button.disabled = false;				
+			}
+			else 
+			{
+				$(this).css('background-color', 'rgba(200, 0, 0, 0.3)');
+				button.disabled = true;
+			}
+		});
+
+		$('#password1').on('change', function() {
+			var conf = $('#confirm_password').val();
+			var pass = $(this).val();
+
+			if (conf == pass && conf.length > 5)
+			{	
+				$('#confirm_password').css('background-color', 'rgba(0, 200, 0, 0.3)');
+				button.disabled = false;
+			}
+			else 
+			{
+				$('#confirm_password').css('background-color', 'rgba(200, 0, 0, 0.3)');
+				button.disabled = true;				
+			}
+		});
 	</script>
   </body>
 </html>

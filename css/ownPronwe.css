@@ -23,14 +23,10 @@ input {
 	margin: 1em auto;
 	padding:2%;
 	width:100%;
-	background-color: rgba(0,0,0,0.04);
+	background-color: rgba(0,0,0,0.05);
 	border:none;
 	height:35px; 	
-	/*width: 250px; 
-	margin-top:25px;*/ 
 	color:#909fa7; 
-	/*background-color:#fff; 
-	font-weight:500; */
 } 
 
 label { 
@@ -40,7 +36,6 @@ label {
 	left:0.25em;
 	pointer-events:none;
 	color:#909fa7;
-	font-family:arial; 
 	transition: 0.5s ease all; 
 } 
 
@@ -48,7 +43,7 @@ input:focus ~ .label-box label,
 input:valid ~ .label-box label { 
 	font-size: 1em; 
 	transform: translateY(-2.4em); 
-	color:#909fa7; 
+	color:#757575; 
 	font-weight:bolder; 
 } 
 
