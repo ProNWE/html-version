@@ -1,0 +1,41 @@
+/*
+CONSTANTS
+	ProNWE BLUE - #2f95ea
+}
+
+*/
+
+@font-face {
+	font-family: pronwe;
+	src: url(Exo2-Medium.ttf);
+}
+
+.pronwe_Link-small{
+	text-decoration:none; 
+}
+.pronwe_Link-small:hover{
+    border-bottom:1px dashed #1565C0;
+}
+.pronwe_background{
+	background-color:#2f95ea;
+}
+.pronwe_color{
+	color:#2f95ea;
+}
+a{
+	text-decoration:none;
+}
+ul{
+	list-style:none;
+}
+.btn{ 
+	border-radius: 5px; 
+	display: block; 
+	width: 100%; 
+	color: #fff;
+	border: 0;
+	padding: 0.45em 1.1em; 
+	font-size: 1.1em; 
+	line-height: 1.52857143; 
+	
+}

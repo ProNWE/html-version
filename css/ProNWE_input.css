@@ -1,55 +1,18 @@
-/*
-CONSTANTS
-	ProNWE BLUE - #2f95ea
-}
-
-*/
-
-@font-face {
-	font-family: pronwe;
-	src: url(Exo2-Medium.ttf);
-}
-
-.pronwe_Link-small{
-	text-decoration:none; 
-}
-.pronwe_Link-small:hover{
-    border-bottom:1px dashed #1565C0;
-}
-.pronwe_background{
-	background-color:#2f95ea;
-}
-.pronwe_color{
-	color:#2f95ea;
-}
-a{
-	text-decoration:none;
-}
-ul{
-	list-style:none;
-}
-.btn{ 
-	border-radius: 5px; 
-	display: block; 
-	width: 100%; 
-	color: #fff;
-	border: 0;
-	padding: 0.45em 1.1em; 
-	font-size: 1.1em; 
-	line-height: 1.52857143; 
-	
-}
-
 input { 
 	box-sizing: border-box; 
+	
 	outline:none;
 	margin: 1em auto;
 	padding:2%;
 	width:100%;
 	background-color: rgba(0,0,0,0.05);
 	border:none;
-	height:35px; 	
-	color:#909fa7; 
+	height:2.5em; 	
+	/*width: 250px; 
+	margin-top:25px;*/ 
+	color:#757575; 
+	/*background-color:#fff; 
+	font-weight:500; */
 } 
 
 label { 
@@ -58,7 +21,8 @@ label {
 	bottom:0.8em;
 	left:0.25em;
 	pointer-events:none;
-	color:#909fa7;
+	color:#757575;
+	font-family:arial; 
 	transition: 0.5s ease all; 
 } 
 
@@ -81,7 +45,7 @@ input:valid ~ .label-box label {
 	position: absolute; 
 	height: 1px; 
 	left: 0; 
-	width: 30%; 
+	width: 40%; 
 	bottom: 0.8em; 
 	background-color: #0D47A1; 
 } 
