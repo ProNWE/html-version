@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Авторизация - ProNWE.ru</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Страница авторизации для зарегистрированных пользователей">
+    <meta name="keywords"  content="pronwe,вход,регистрация,авторизация" />
+    <meta name="Resource-type" content="Document" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Иконка сайта -->
+    <link rel="icon" type="image/png" href="assets/imgs/favicon.png">
+    <!-- Стили -->
+    <link rel="stylesheet" type="text/css" href="css/ownPronwe.css" />
+	<link rel="stylesheet" type="text/css" href="css/sign.css" />
+	<link rel="stylesheet" type="text/css" href="css/input.css" />
+	<!-- JS -->
+	<script src="js/jquery-1.12.0.min.js"></script>
+
+  </head>
+  <script>
+		function checkMail(prefix) {
+			var button = document.getElementById(prefix+'button');
+			var mail = document.getElementById(prefix+'email').value;
+			var pass = document.getElementById(prefix+'pass').value;
+			
+			if (mail.indexOf("@")>0 && mail.indexOf("@")==mail.lastIndexOf("@") && mail.lastIndexOf("@")+1<mail.lastIndexOf("."))
+			{	
+				document.getElementById(prefix+'email').style.backgroundColor = 'rgba(0,0,0,0.05)';
+				if (prefix=='up')
+					return true;
+				button.disabled = false;
+			}
+			else 
+			{
+				document.getElementById(prefix+'email').style.backgroundColor = 'rgba(200, 0, 0, 0.3)';
+				if (prefix=='up')
+					return false;
+				button.disabled = true;
+			}
+		}
+		function checkPass()
+		{
+			var pass = document.getElementById('uppass').value;
+			var pass2 = document.getElementById('uppass2').value;
+			if (pass==pass2)
+				return true;
+			else
+				return false;
+		}
+		function enableButton()
+		{
+			var button = document.getElementById('upbutton');
+			if (checkPass() && checkMail('up'))
+				button.disabled = false;
+			else
+				button.disabled = true;
+		}
+	</script>
+	<script>
+		function showReg()
+		{
+			document.getElementById('signin').style.display='none';
+			document.getElementById('signup').style.display='block';
+		}
+	</script>
+	<body>
+	<img src="img/pronweLogo.svg" style="display:block; margin:-3em auto; width:25%;">
+		<div class="central-box" id="signin">
+			<form action="" method="POST">
+				<div class="cont">
+					<input type="text" id="inemail" onchange="checkMail('in')" required name="login" autofocus>
+					<div class="label-box">
+						<label>Email</label>
+					</div>
+				</div class="cont">
+				<div>
+					<input type="password" id="inpass" required name="password">
+					<div class="label-box">
+						<label>Пароль</label>
+					</div>
+				</div>
+				<center><button id="inbutton" disabled>Sign in</button></center>
+				<p>or would like to <a href="#" onclick="showReg()" class="pronwe_Link-small">Sign up</a>?</p>
+			</form>
+		</div>
+		<div class="central-box" id="signup" style="display:none;">
+			<form action="" method="POST" style="">
+			
+				<div class="cont">
+					<input type="text" id="upemail" onchange="checkMail('up'); enableButton();" required>
+					<div class="label-box">
+						<label>Email</label>
+					</div>
+				</div class="cont">
+				<div>
+					<input type="password" onchange="enableButton()" id="uppass" required>
+					<div class="label-box">
+						<label>Пароль</label>
+					</div>
+				</div>
+				<div>
+					<input type="password" onchange="enableButton()" id="uppass2" required>
+					<div class="label-box">
+						<label>Подтвердите пароль</label>
+					</div>
+				</div>
+			
+				<center><button id="upbutton" disabled>Sign up</button></center>
+			</form>
+		</div>
+	</body>
+</html>
