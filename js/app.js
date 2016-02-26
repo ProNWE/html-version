@@ -1,3 +1,13 @@
+/*!
+ * 
+ * Angle - Bootstrap Admin App + jQuery
+ * 
+ * Version: 3.2.0
+ * Author: @themicon_co
+ * Website: http://themicon.co
+ * License: https://wrapbootstrap.com/help/licenses
+ * 
+ */
 !function(e,t,o,n){
 	if("undefined"==typeof o)throw new Error("This application's JavaScript requires jQuery");
 	o(function(){
