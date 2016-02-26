@@ -381,7 +381,7 @@ body, html {
     }
 }
 
-.content-wrapper > .content-heading, .content-wrapper > h3 {
+.content-wrapper > .content-heading, .content-wrapper > h3, .content-wrapper > h2{
     font-size: 24px;
     line-height: 1.1;
     color: #929292;
@@ -2707,11 +2707,19 @@ body, html {
         clear: both;
     }
 
-    .user-block > .user-block-picture {
+    .user-block > .user-block-picture,
+	.content-wrapper .user-block-picture{
         position: relative;
         width: 130px;
         margin: 0 auto;
+		text-align:center;
     }
+	
+	.content-wrapper .user-block-picture{
+		margin:0 auto;
+		margin-bottom:1em;
+		width:150px
+	}
 
         .user-block > .user-block-picture > img {
             max-width: 100%;
@@ -3245,6 +3253,10 @@ body, html {
     margin: 0;
     padding: 0;
     width: 100%;
+}
+
+.timeline{
+	max-width:100%!important;
 }
 
     .row-masonry > .col-masonry {

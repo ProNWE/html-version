@@ -11,13 +11,17 @@ CONSTANTS
 }
 
 .pronwe_Link-small{
-	text-decoration:none; 
+	text-decoration:none!important; 
 }
 .pronwe_Link-small:hover{
     border-bottom:1px dashed #1565C0;
 }
 .pronwe_background{
 	background-color:#2f95ea;
+}
+.pronwe_color-border-solid-1px{
+	border:2px solid #2f95ea;
+	border-radius:5px;
 }
 .pronwe_color{
 	color:#2f95ea;
@@ -28,7 +32,7 @@ a{
 ul{
 	list-style:none;
 }
-.btn{ 
+.btn_area>.btn{ 
 	border-radius: 5px; 
 	display: block; 
 	width: 100%; 
@@ -37,5 +41,5 @@ ul{
 	padding: 0.45em 1.1em; 
 	font-size: 1.1em; 
 	line-height: 1.52857143; 
-	
+	margin:1em auto;
 }
