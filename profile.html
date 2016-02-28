@@ -18,6 +18,8 @@
    <link rel="stylesheet" href="vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css">
    <!-- ANIMATE-->
    <link rel="stylesheet" href="vendor/animate.css/animate.min.css">
+   <!-- CROPPER-->
+   <link rel="stylesheet" href="vendor/cropper/dist/cropper.css">
    <!-- =============== BOOTSTRAP STYLES ===============-->
    <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
    <!-- =============== APP STYLES ===============-->
@@ -242,47 +244,52 @@
       <!-- MAIN SECTION -->
     <section>
         <div class="content-wrapper">
-			<h2>Username</h2>
+			<h2>Иванов Иван Иванович</h2>
 
             <div class="panel panel-default">
 				<div class="panel-body">
                     <div class="row">
-						<div class="col-md-3">
-							<div class="user-block-picture">
-								<img src="img/user/02.jpg" alt="Avatar" width="140px" class="thumbnail" style="border-radius:50%">
+						<div class="col-md-2" style="padding:0 1em;">
+							<div class="user-block-picture" style="width:100%;">
+								<img src="img/user/02.jpg" alt="Avatar" class="pronwe_boxShadow pronwe_border-1px" style="max-width:150px; width:inherit; border-radius:10%; margin:0 auto;">
+								<!-- Если аккаунт пользователя -->
+								<button type="button" title="Загрузить фотографию профиля" data-toggle="modal" data-target="#choose-photo" class="btn load-photo"><i class="fa fa-upload"></i></button>
 							</div>
                         </div>
                         
-                        <div class="col-md-9">
+                        <div class="col-md-10">
 							<div class="panel">
 								<table id="user" style="clear: both" class="table table-bordered table-striped">
 									<tbody>
 										<tr>
 											<td width="35%">Фамилия</td>
-											<td width="65%"><a href="#" id="username" data-type="text" data-pk="1" data-title="Enter username">superuser</a></td>
+											<td width="65%">
+												<!-- IF LOGGED IN AS THAT USER <a href="#" id="firstname" data-type="text" data-pk="1" data-title="Введите фамилию">Иванов</a> -->
+												<p class="menu-text text-primary">Иванов</p>
+											</td>
 										</tr>
 										<tr>
 											<td width="35%">Имя</td>
 											<td width="65%">
-												<a id="secondName" href="#" data-type="text" data-pk="1" data-title="Введите имя">Иван</a>
+												<a id="secondname" href="#" data-type="text" data-pk="1" data-title="Введите имя">Иван</a>
 											</td>
 										</tr>
 										<tr>
 											<td width="35%">Отчество</td>
 											<td width="65%">
-												<a id="thirdName" href="#" data-type="text" data-pk="1" data-title="Введите отчество">Иванович</a>
+												<a id="thirdname" href="#" data-type="text" data-pk="1" data-title="Введите отчество">Иванович</a>
 											</td>
 										</tr>
 										<tr>
 											<td width="35%">Номер телефона</td>
 											<td width="65%">
-												<a id="phoneNumber" href="#" data-type="text" data-pk="1" data-title="Введите номер телефона">8-800-555-35-35</a>
+												<a id="phonenumber" href="#" data-type="text" data-pk="1" data-title="Введите номер телефона">8-800-555-35-35</a>
 											</td>
 										</tr>
 										<tr>
 											<td width="35%">Город</td>
 											<td width="65%">
-												<a id="City" href="#" data-type="text" data-pk="1" data-title="Город">Санкт-Петербург</a>
+												<a id="city" href="#" data-type="text" data-pk="1" data-title="Город">Санкт-Петербург</a>
 											</td>
 										</tr>
 									</tbody>
@@ -317,11 +324,78 @@
    <script src="vendor/moment/min/moment-with-locales.min.js"></script>
    <!-- DEMO-->
    <script src="js/demo/demo-xeditable.js"></script>
-
+	<!-- CROPPER-->
+   <script src="vendor/cropper/dist/cropper.js"></script>
    <!-- =============== APP SCRIPTS ===============-->
    <script src="js/app.js"></script>
    <!-- =============== TWITTER SCRIPTS ===============-->
    <script src="js/twitter.js"></script>
+   
+   <!-- MODAL CHOOSE PHOTO-->
+   <div id="choose-photo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 id="myModalLabel" class="modal-title">Загрузка новой фотографии</h4>
+            </div>
+            <div class="modal-body">
+               <div id="select-photo">
+                  <h5>
+                     Вас будет проще узнать, если Вы загрузите свою настоящую фотографию<br><br>
+                     Вы можете загрузить изображение в формате JPG, GIF или PNG.
+                  </h5>
+                  <br>
+                  <div class="row">
+                     <label for="inputImage" title="Выберите файл" class="btn btn-info btn-upload" style="width: 35%; display:block; margin:0 auto;">
+                        <input id="inputImage" name="file" type="file" accept="image/*" class="sr-only" onclick="GotoEdit()">
+                        <span class="fa fa-upload"> Выберите файл</span>
+                     </label>
+                   </div>
+                  <br>
+                  <h5>Если у Вас возникают проблемы с загрузкой, попробуйте выбрать фотографию меньшего размера</h5>
+               </div>
+               <div id="edit-photo" style="display: none;">
+                  <h5>Выбранная область будет показываться на Вашей странице.</h5>
+                  <br>
+                  <div class="img-container mb-lg" >
+                     <img id="photo" src="" alt="Picture" class="cropper-hidden" >
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <button id="save-photo" type="button" class="btn btn-primary">Сохранить</button>   
+                     </div>
+                     <div class="col-md-6">
+                        <button type="button" class="btn" onclick="GotoChosen()">Выбрать другую фотографию</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+   <script type="text/javascript">
+      $("#photo").cropper({
+         mouseWheelZoom: false,
+         mavable: false,      
+         built: function () {
+            $("#photo").cropper("setAspectRatio", 1 / 1);
+         }
+      });
+   </script>
+   <script type="text/javascript">
+      function GotoEdit()
+      {
+         document.getElementById('select-photo').style.display='none';
+         document.getElementById('edit-photo').style.display='block';   
+      }
+      function GotoChosen()
+      {
+         document.getElementById('edit-photo').style.display='none';
+         document.getElementById('select-photo').style.display='block';   
+      }   
+   </script>
 
 </body>
 

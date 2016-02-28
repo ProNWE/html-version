@@ -19,9 +19,12 @@ CONSTANTS
 .pronwe_background{
 	background-color:#2f95ea;
 }
-.pronwe_color-border-solid-1px{
-	border:2px solid #2f95ea;
-	border-radius:5px;
+.pronwe_border-1px{
+	background-color:rgba(70,70,70,0.25);
+	padding:1px;
+}
+.pronwe_boxShadow{
+	box-shadow:0px 0px 7px -3px rgba(40,40,40,1);
 }
 .pronwe_color{
 	color:#2f95ea;
@@ -31,6 +34,9 @@ a{
 }
 ul{
 	list-style:none;
+}
+.menu-text{
+	margin:0;
 }
 .btn_area>.btn{ 
 	border-radius: 5px; 
