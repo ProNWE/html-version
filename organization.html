@@ -17,7 +17,7 @@
    <!-- ANIMATE-->
    <link rel="stylesheet" href="vendor/animate.css/animate.min.css">
    <!-- CROPPER-->
-   <link rel="stylesheet" href="vendor/cropper/dist/cropper.css">
+   <link rel="stylesheet" href="vendor/cropper/dist/cropper.css">   
    <!-- =============== BOOTSTRAP STYLES ===============-->
    <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
    <!-- =============== APP STYLES ===============-->
@@ -235,25 +235,29 @@
       <section>
          <div class="content-wrapper">
             <div class="unwrap">
-               <div style="background-image: url(img/profile-bg.jpg);  background-position:center;" class="bg-cover" title="Фото организации">
+               <div style="background-image: url(img/profile-bg.jpg);  background-position:center;" class="bg-cover" title="">
                   <div class="change-background" id="">
-                     <a class="icon-change-background" href="#" id="">
+                     <a class="icon-change-background" href="#" id="update-photo">
                         <i class="fa fa-camera text-white icon-position"></i>
                         <div class="box-change-background" title="">
-                           <span>Обновить фото</span>
+                           <span>Обновить обложку</span>
                         </div>
                      </a>
                   </div>
+               </div>
 
-                  <div class="change-org-logo">
-                     <img src="img/user/09.jpg" alt="Image" class="img-thumbnail img-circle thumb128">
-                  </div>   
+               <div class="change-org-logo">
+                  <img src="img/itmo.jpg" alt="Image" class="img-thumbnail img-circle thumb128">
+               </div>
+               <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-2">Лента новостей</div>
+                  <div class="col-md-2">Поробнее об организации</div>
+                  <div class="col-md-2">Календарь событий</div>
+                  <div class="col-md-2">Мероприятия</div>
                </div>
             </div>
-            
          </div>
-               
-            
       </section>
       
       <!-- FOOTER -->
@@ -278,30 +282,86 @@
    <script src="js/twitter.js"></script>
 
    <script type="text/javascript">
-      $("#icon-change-backgroun").hover(function() {
-         $("#box-change-backgroun").
+      $(".change-background").hover(function () {
+         $(".box-change-background").css("width","170px").css("opacity","1");
+         $(".icon-position").css("opacity","0.8").css("font-size","1.1em").css("padding-top","4px").css("padding-left","3px");
+         },
+         function () {
+           $(".box-change-background").css("opacity","0").css("width","34px"); 
+           $(".icon-position").css("opacity","0.4").css("font-size","1.5em").css("padding-top","0px").css("padding-left","0px");
       });
    </script>
 
-     <script type="text/javascript">
+   <!-- START UPDATE PHOTO -->
+   <div class="update-overlay" tabindex="-1"></div>
+   <div class="update-alert animated" data-allow-outside-click="false" style="display:none">
+      <div class="update-alert-header">
+         <button type="button" class="update-alert-close">Закрыть</button>
+         <h4 class="update-alert-title">Загрузка новой обложки</h4>
+      </div>
+      <div class="update-alert-body">
+         <div id="select-photo" class="animated">
+            <h5>
+               Загрузите новую обложку для своей страницы мероприятия<br><br>
+               Вы можете загрузить изображение в формате JPG, GIF или PNG.
+            </h5>
+            <br>
+            <div class="row">
+               <label for="inputImage" title="Выберите файл" class="btn btn-choose update-alert-choose">
+               <input id="inputImage" name="file" type="file" accept="image/jpeg,image/gif,image/png" class="sr-only">
+                  <span class="fa fa-upload"> Выберите файл</span>
+               </label>
+            </div>
+            <br>
+            <h5>Если у Вас возникают проблемы с загрузкой, попробуйте выбрать изобржение меньшего размера</h5>
+         </div>
+         
+         <div id="edit-photo" class="animated" style="display: none;">
+            <h5>Выбранная область будет показываться на Вашей странице.</h5>
+               <br>
+            <div class="img-container mb-lg" >
+               <img id="photo" src="" alt="Picture" class="cropper-hidden" >
+            </div>
+            <div class="row">
+               <div class="col-md-6 btn_area">
+                  <button id="save-photo" type="button" class="btn">Сохранить</button>   
+               </div>
+               <div class="col-md-6 btn_area">
+                  <button type="button" class="btn btn-another">Выбрать другой файл</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script type="text/javascript">
+      $("#update-photo").click(function (){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+         $(".update-overlay").css("display","block");
+         $(".update-alert").removeClass("bounceOut").addClass("bounceIn").css("display","block");
+      });
+      $(".update-alert-close").click(function (){
+         $(".update-alert").removeClass("bounceIn").addClass("bounceOut");
+         $(".update-overlay").css("display","none");
+      });
       $("#photo").cropper({
          mouseWheelZoom: false,
          mavable: false,      
          built: function () {
-            $("#photo").cropper("setAspectRatio", 1 / 1);
+            $("#photo").cropper("setAspectRatio", 4.8 / 1);
          }
       });
-   </script>
-   <script type="text/javascript">
-      $(".icon-change-background").hover(function () {
-         $(".icon-position").css("opacity","0.8").css("font-size","1.1em").css("padding-top","4px").css("padding-left","3px");
-         $(".box-change-background").css("opacity","1");
-         },
-         function () {
-           $(".box-change-background").css("opacity","0"); 
-           $(".icon-position").css("opacity","0.4").css("font-size","1.5em").css("padding-top","0px").css("padding-left","0px");
+      $('input[type=file]').on('change',function(){
+         $("#select-photo").css("display","none");
+         $("#edit-photo").css("display","block");
+      });
+      $(".btn-another").click(function(){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
       });
    </script>
+   <!-- END UPDATE PHOTO -->
+
 </body>
 
 </html>
