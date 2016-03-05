@@ -11,13 +11,20 @@ CONSTANTS
 }
 
 .pronwe_Link-small{
-	text-decoration:none; 
+	text-decoration:none!important; 
 }
 .pronwe_Link-small:hover{
     border-bottom:1px dashed #1565C0;
 }
 .pronwe_background{
 	background-color:#2f95ea;
+}
+.pronwe_border-1px{
+	background-color:rgba(70,70,70,0.25);
+	padding:1px;
+}
+.pronwe_boxShadow{
+	box-shadow:0px 0px 7px -3px rgba(40,40,40,1);
 }
 .pronwe_color{
 	color:#2f95ea;
@@ -28,10 +35,17 @@ a{
 ul{
 	list-style:none;
 }
+<<<<<<< HEAD
 .btn_area{
 	margin:1em auto;
 }
 .btn{ 
+=======
+.menu-text{
+	margin:0;
+}
+.btn_area>.btn{ 
+>>>>>>> petya
 	border-radius: 5px; 
 	display: block; 
 	width: 100%; 
@@ -39,6 +53,7 @@ ul{
 	border: 0;
 	padding: 0.45em 1.1em; 
 	font-size: 1.1em; 
+<<<<<<< HEAD
 	line-height: 1.52857143; 	
 	color: #fff;
     background-color: #23b7e5;
@@ -148,6 +163,10 @@ button.update-alert-close {
 	width: 40%; 
 	margin-left: auto;
 	margin-right: auto;
+=======
+	line-height: 1.52857143; 
+	margin:1em auto;
+>>>>>>> petya
 }
 @media all and (max-width:460px) {
 	.update-alert-choose{
