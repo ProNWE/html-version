@@ -35,25 +35,18 @@ a{
 ul{
 	list-style:none;
 }
-<<<<<<< HEAD
+
 .btn_area{
 	margin:1em auto;
 }
 .btn{ 
-=======
-.menu-text{
 	margin:0;
-}
-.btn_area>.btn{ 
->>>>>>> petya
 	border-radius: 5px; 
 	display: block; 
 	width: 100%; 
 	color: #fff;
 	border: 0;
 	padding: 0.45em 1.1em; 
-	font-size: 1.1em; 
-<<<<<<< HEAD
 	line-height: 1.52857143; 	
 	color: #fff;
     background-color: #23b7e5;
@@ -163,10 +156,8 @@ button.update-alert-close {
 	width: 40%; 
 	margin-left: auto;
 	margin-right: auto;
-=======
 	line-height: 1.52857143; 
 	margin:1em auto;
->>>>>>> petya
 }
 @media all and (max-width:460px) {
 	.update-alert-choose{
