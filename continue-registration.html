@@ -165,23 +165,12 @@
       <aside class="aside">
          <div class="aside-inner">
             <nav data-sidebar-anyclick-close="" class="sidebar">
-               <ul class="nav">
-                  <!-- USER INFO-->
-                  <li class="user-block">
-                     <div class="user-block-picture">
-                        <img src="img/user/no-user.png" alt="Avatar" width="150" height="150" class="img-thumbnail img-circle">
-                     </div>
-                     <div class="user-block-info">
-                        <span class="user-block-name">Добро пожаловать!</span>
-                        <span class="user-block-name">"ИМЯ, если есть"</span>
-                     </div>
-                  </li>
-                  
+               <ul class="nav">                  
                   <!-- LEFT NAVIGATION -->
                   <li class="nav-heading">
                      <span>Навигация</span>
                   </li>
-                  <li class=" ">
+                  <!--<li class=" ">
                      <a href="#organisationLink" title="Организации" data-toggle="collapse">
                         <em class="icon-briefcase"></em>
                         <span>Организации</span>
@@ -193,38 +182,31 @@
                               <span>Мои организации</span>
                            </a>
                         </li>
-						<li class=" ">
+                  <li class=" ">
                            <a href="" title="Список организаций">
                               <span>Список организаций</span>
                            </a>
                         </li>
                      </ul>
-                  </li>
-   				   <li class=" ">
-                     <a href="#eventLink" title="Мероприятия" data-toggle="collapse">
+                  </li>-->
+                  <li class=" ">
+                     <a href="#eventLink" title="Мои мероприятия" data-toggle="collapse">
                         <em class="icon-notebook"></em>
-                        <span>Мероприятия</span>
+                        <span>Мои мероприятия</span>
                      </a>
-                     <ul id="eventLink" class="nav sidebar-subnav collapse">
-                        <li class="sidebar-subnav-header">Мероприятия</li>
-                        <li class=" ">
-                           <a href="" title="Ближайшие мероприятия">
-                              <span>Ближайшие</span>
-                           </a>
-                        </li>
-   						   <li class=" ">
-                           <a href="" title="Прошедшие мероприятия">
-                              <span>Прошедшие</span>
-                           </a>
-                        </li>
-                     </ul>
                   </li>
                   <li class=" ">
-                     <a href="" title="Создать организацию" data-toggle="collapse">
+                     <a href="#eventLink" title="Все мероприятия" data-toggle="collapse">
+                        <em class="icon-list"></em>
+                        <span>Все мероприятия</span>
+                     </a>
+                  </li>
+                  <li class=" ">
+                     <a href="" title="Создать мероприятие" data-toggle="collapse">
                         <em class="icon-plus"></em>
-                        <span>Создать организацию</span>
+                        <span>Создать мероприятие</span>
                     </a>
-    				   </li>
+                  </li>
                </ul>
             </nav>
          </div>
@@ -295,7 +277,7 @@
                               </div>
                            </div>
                            <div class="col-md-6 btn_area">
-                              <button type="button" data-toggle="modal" data-target="#choose-photo" class="btn btn-primary">Выберите фотографию</button>
+                              <button type="button" id="update-photo" class="btn btn-primary">Выберите фотографию</button>
                            </div>
                            <div class="col-md-6 btn_area">
                               <button id="submit" type="button" class="btn btn-primary">Готово</button>
@@ -336,52 +318,59 @@
          jQuery("#country").val(ymaps.geolocation.country);
       }
    </script> 
-   
-   <!-- MODAL CHOOSE PHOTO-->
-   <div id="choose-photo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <h4 id="myModalLabel" class="modal-title">Загрузка новой фотографии</h4>
+
+    <!-- START UPDATE PHOTO -->
+   <div class="update-overlay" tabindex="-1"></div>
+   <div class="update-alert animated" data-allow-outside-click="false" style="display:none">
+      <div class="update-alert-header">
+         <button type="button" class="update-alert-close">Закрыть</button>
+         <h4 class="update-alert-title">Загрузка новой обложки</h4>
+      </div>
+      <div class="update-alert-body">
+         <div id="select-photo" class="animated">
+            <h5>
+               Загрузите новую обложку для своей страницы мероприятия<br><br>
+               Вы можете загрузить изображение в формате JPG, GIF или PNG.
+            </h5>
+            <br>
+            <div class="row">
+               <label for="inputImage" title="Выберите файл" class="btn btn-choose update-alert-choose">
+               <input id="inputImage" name="file" type="file" accept="image/jpeg,image/gif,image/png" class="sr-only">
+                  <span class="fa fa-upload"> Выберите файл</span>
+               </label>
             </div>
-            <div class="modal-body">
-               <div id="select-photo">
-                  <h5>
-                     Вас будет проще узнать, если Вы загрузите свою настоящую фотографию<br><br>
-                     Вы можете загрузить изображение в формате JPG, GIF или PNG.
-                  </h5>
-                  <br>
-                  <div class="row">
-                     <label for="inputImage" title="Выберите файл" class="btn btn-info btn-upload" style="width: 35%; margin-left: auto;margin-right: auto;">
-                        <input id="inputImage" name="file" type="file" accept="image/*" class="sr-only" onclick="GotoEdit()">
-                        <span class="fa fa-upload"> Выберите файл</span>
-                     </label>
-                   </div>
-                  <br>
-                  <h5>Если у Вас возникают проблемы с загрузкой, попробуйте выбрать фотографию меньшего размера</h5>
+            <br>
+            <h5>Если у Вас возникают проблемы с загрузкой, попробуйте выбрать изобржение меньшего размера</h5>
+         </div>
+         
+         <div id="edit-photo" class="animated" style="display: none;">
+            <h5>Выбранная область будет показываться на Вашей странице.</h5>
+               <br>
+            <div class="img-container mb-lg" >
+               <img id="photo" src="" alt="Picture" class="cropper-hidden" >
+            </div>
+            <div class="row">
+               <div class="col-md-6 btn_area">
+                  <button id="save-photo" type="button" class="btn">Сохранить</button>   
                </div>
-               <div id="edit-photo" style="display: none;">
-                  <h5>Выбранная область будет показываться на Вашей странице.</h5>
-                  <br>
-                  <div class="img-container mb-lg" >
-                     <img id="photo" src="" alt="Picture" class="cropper-hidden" >
-                  </div>
-                  <div class="row">
-                     <div class="col-md-6">
-                        <button id="save-photo" type="button" class="btn btn-primary">Сохранить</button>   
-                     </div>
-                     <div class="col-md-6">
-                        <button type="button" class="btn" onclick="GotoChosen()">Выбрать другую фотографию</button>
-                     </div>
-                  </div>
+               <div class="col-md-6 btn_area">
+                  <button type="button" class="btn btn-another">Выбрать другой файл</button>
                </div>
             </div>
          </div>
       </div>
    </div>
-
-
    <script type="text/javascript">
+      $("#update-photo").click(function (){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+         $(".update-overlay").css("display","block");
+         $(".update-alert").removeClass("bounceOut").addClass("bounceIn").css("display","block");
+      });
+      $(".update-alert-close").click(function (){
+         $(".update-alert").removeClass("bounceIn").addClass("bounceOut");
+         $(".update-overlay").css("display","none");
+      });
       $("#photo").cropper({
          mouseWheelZoom: false,
          mavable: false,      
@@ -389,19 +378,16 @@
             $("#photo").cropper("setAspectRatio", 1 / 1);
          }
       });
+      $('input[type=file]').on('change',function(){
+         $("#select-photo").css("display","none");
+         $("#edit-photo").css("display","block");
+      });
+      $(".btn-another").click(function(){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+      });
    </script>
-   <script type="text/javascript">
-      function GotoEdit()
-      {
-         document.getElementById('select-photo').style.display='none';
-         document.getElementById('edit-photo').style.display='block';   
-      }
-      function GotoChosen()
-      {
-         document.getElementById('edit-photo').style.display='none';
-         document.getElementById('select-photo').style.display='block';   
-      }   
-   </script>
+   <!-- END UPDATE PHOTO -->      
 </body>
 
 </html>

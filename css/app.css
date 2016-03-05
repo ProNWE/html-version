@@ -155,6 +155,7 @@ hr {
 	padding:0;
 	max-width:200px;
 	margin:0 auto;
+
 }
 
 .org-list-container>ul li{
@@ -179,8 +180,8 @@ hr {
 }
 
 .event-list-container>ul img{
-	width:20px;
-	height:20px;
+	width:23px;
+	height:23px;
 	margin-right:0.5em;
 }
 
