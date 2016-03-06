@@ -16,6 +16,11 @@
    <link rel="stylesheet" href="vendor/whirl/dist/whirl.css">
    <!-- ANIMATE-->
    <link rel="stylesheet" href="vendor/animate.css/animate.min.css">
+   <!-- CROPPER-->
+   <link rel="stylesheet" href="vendor/cropper/dist/cropper.css">
+   <!-- CHOSEN-->
+   <link rel="stylesheet" href="vendor/chosen_v1.2.0/chosen.min.css">
+   
    <!-- =============== BOOTSTRAP STYLES ===============-->
    <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
    <!-- =============== APP STYLES ===============-->
@@ -213,10 +218,95 @@
       
       <!-- MAIN SECTION -->
       <section>
-         
-      </section>
-      
-      <!-- FOOTER -->
+         <div class="content-wrapper">
+            <h3>Создание нового мероприятия</h3>
+            
+            <div class="panel panel-default">
+               <div class="panel-heading" style="font-size: 1.2em">Заполните всю информацию, касающуюся мероприятия. Все поля обязательны для заполнения.</div>
+               <div class="panel-body">
+                  <form role="form" class="form-horizontal">                  
+                     <div class="form-group">
+                        <label for="input-event-name" class="col-md-2 control-label">Название мероприятия</label>
+                        <div class="col-md-10">
+                           <input id="input-event-name" name="input-event-name" placeholder="например: Мистер ИТМО" type="text" class="form-control input-lg" maxlength="100">
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="input-event-description" class="col-md-2 control-label">Описание мероприятия</label>
+                        <div class="col-md-10">
+                           <textarea id="input-event-description" name="input-event-description" placeholder="Раскажите о чем Ваше мероприятие, не более 1000 символов" type="text" class="form-control" style="height: 10em;" maxlength="1000"></textarea>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="input-event-status" class="col-md-2 control-label">Статус мероприятия</label>
+                        <div class="col-md-10">
+                           <select id="input-event-status" name="input-event-status" class="form-control">
+                              <option value="IN">Международное мероприятие</option>
+                              <option value="RU">Всероссийское мероприятие</option>
+                              <option value="RE">Региональное мероприятие</option>
+                              <option value="CI">Городское мероприятие</option>
+                              <option value="UN">Университетское мероприятие</option>
+                              <option value="SC">Школьное мероприятие</option>
+                           </select>
+                           <span class="help-block m-b-none">Статус мероприятия нужен для поиска мероприятия в системе.</span>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="input-event-organization" class="col-md-2 control-label">Выберите организацию</label>
+                        <div class="col-md-10">
+                           <select id="input-event-organization" name="input-event-organization" multiple class="chosen-select form-control" data-placeholder="Начните вводить организацию">
+                              <option>Университет ИТМО</option>
+                              <option>Профком ИТМО</option>
+                              <option>Совет обучающихся университета ИТМО</option>
+                           </select>
+                           <span class="help-block m-b-none">Можно выбрать более одной организации.</span>
+                        </div>
+                     </div>
+                     <div class="col-md-6 btn_area">
+                        <div class="form-group">
+                           <label for="input-event-start" class="col-md-5 control-label">Начало мероприятия</label>
+                           <div class="col-md-7">
+                              <input id="input-event-start" type="datetime-local" name="input-event-start" class="form-control">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="input-event-end" class="col-md-5 control-label">Конец мероприятия</label>
+                           <div class="col-md-7">
+                              <input id="input-event-end" type="datetime-local" name="input-event-end" class="form-control">
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 btn_area">
+                        <div class="form-group">
+                           <label for="input-event-city" class="col-md-3 control-label">Город</label>
+                           <div class="col-md-9">
+                              <input id="input-event-city" name="input-event-city" type="text" class="form-control"> 
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-md-offset-4" style="padding-top: 20px">
+                           <button type="button" id="update-photo" class="btn" style="background-color: #BDBDBD;">Выберите фотографию</button>
+                        </div>
+                     </div>
+                     <div class="form-group btn_area">
+                        <label for="input-event-type" class="col-md-2 control-label">Тип мероприятия</label>
+                        <div class="col-md-10">
+                           <select id="input-event-type" name="input-event-type" class="form-control">
+                           <!-- для value: XYZ == этап(X) участник(Y) критерии(Z) -->
+                              <option value="11N">На каждом этапе один участник оценивается по нескольким критериям, затем следует второй участник и т.д.</option>
+                              <option value="1N1">На каждом этапе несколько участников оцениваются по 1 критерию, затем следующий этап.</option>
+                           </select>
+                           <span class="help-block m-b-none">Вы можете предложить свой тип мероприятия, отправив подробное описание типа на support@pronwe.ru.</span>
+                        </div>
+                     </div>                           
+                     <div class="col-md-4 col-md-offset-8">
+                        <button id="submit" type="button" class="btn btn-primary">Создать</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         </section>   
+   <!-- FOOTER -->
       <footer>
          <span>&copy; 2016 - ProNWE</span>
       </footer>
@@ -230,10 +320,92 @@
    <script src="vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
    <!-- LOCALIZE-->
    <script src="vendor/jquery-localize-i18n/dist/jquery.localize.js"></script>
+   <!-- CHOSEN-->
+   <script src="vendor/chosen_v1.2.0/chosen.jquery.min.js"></script>
+   <!-- CROPPER-->
+   <script src="vendor/cropper/dist/cropper.js"></script>
+
    <!-- =============== APP SCRIPTS ===============-->
    <script src="js/app.js"></script>
    <!-- =============== TWITTER SCRIPTS ===============-->
    <script src="js/twitter.js"></script>
+
+   <script type="text/javascript">
+      $('.chosen-select').chosen();
+      $(".chosen-select").chosen({no_results_text: "Ууупс! Если Вашей организации нет, свяжитесь с нами support@pronwe.ru"});
+      $(".chosen-select").chosen({disable_search_threshold: 10});
+   </script>
+
+   <!-- START UPDATE PHOTO -->
+   <div class="update-overlay" tabindex="-1"></div>
+   <div class="update-alert animated" data-allow-outside-click="false" style="display:none">
+      <div class="update-alert-header">
+         <button type="button" class="update-alert-close">Закрыть</button>
+         <h4 class="update-alert-title">Загрузка новой обложки</h4>
+      </div>
+      <div class="update-alert-body">
+         <div id="select-photo" class="animated">
+            <h5>
+               Загрузите новую обложку для своей страницы мероприятия<br><br>
+               Вы можете загрузить изображение в формате JPG, GIF или PNG.
+            </h5>
+            <br>
+            <div class="row">
+               <label for="inputImage" title="Выберите файл" class="btn btn-choose update-alert-choose">
+               <input id="inputImage" name="file" type="file" accept="image/jpeg,image/gif,image/png" class="sr-only">
+                  <span class="fa fa-upload"> Выберите файл</span>
+               </label>
+            </div>
+            <br>
+            <h5>Если у Вас возникают проблемы с загрузкой, попробуйте выбрать изобржение меньшего размера</h5>
+         </div>
+         
+         <div id="edit-photo" class="animated" style="display: none;">
+            <h5>Выбранная область будет показываться на Вашей странице.</h5>
+               <br>
+            <div class="img-container mb-lg" >
+               <img id="photo" src="" alt="Picture" class="cropper-hidden" >
+            </div>
+            <div class="row">
+               <div class="col-md-6 btn_area">
+                  <button id="save-photo" type="button" class="btn">Сохранить</button>   
+               </div>
+               <div class="col-md-6 btn_area">
+                  <button type="button" class="btn btn-another">Выбрать другой файл</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script type="text/javascript">
+      $("#update-photo").click(function (){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+         $(".update-overlay").css("display","block");
+         $(".update-alert").removeClass("bounceOut").addClass("bounceIn").css("display","block");
+      });
+      $(".update-alert-close").click(function (){
+         $(".update-alert").removeClass("bounceIn").addClass("bounceOut");
+         $(".update-overlay").css("display","none");
+      });
+      $("#photo").cropper({
+         mouseWheelZoom: false,
+         mavable: false,      
+         built: function () {
+            $("#photo").cropper("setAspectRatio", 1 / 1);
+         }
+      });
+      $('input[type=file]').on('change',function(){
+         $("#select-photo").css("display","none");
+         $("#edit-photo").css("display","block");
+      });
+      $(".btn-another").click(function(){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+      });
+   </script>
+   <!-- END UPDATE PHOTO -->    
+
 </body>
 
 </html>
