@@ -258,8 +258,9 @@
                               <option>Университет ИТМО</option>
                               <option>Профком ИТМО</option>
                               <option>Совет обучающихся университета ИТМО</option>
+                              <!-- и так далее, делаем запрос из бд,, где располагаются организации  -->
                            </select>
-                           <span class="help-block m-b-none">Можно выбрать более одной организации.</span>
+                           <span class="help-block m-b-none">Можно выбрать более одной организации. Если вашей организации нет в списке, свяжитесь с нами support@pronwe.ru</span>
                         </div>
                      </div>
                      <div class="col-md-6 btn_area">
@@ -280,7 +281,12 @@
                         <div class="form-group">
                            <label for="input-event-city" class="col-md-3 control-label">Город</label>
                            <div class="col-md-9">
-                              <input id="input-event-city" name="input-event-city" type="text" class="form-control"> 
+                             <select id="input-event-city" name="input-event-city" class="chosen-select form-control" data-placeholder="Выберите город">
+                                 <option value=""></option>
+                                 <option value="SPb">Санкт-Петербург</option>
+                                 <option value="Moscow">Москва</option>
+                                 <!-- и так далее, делаем запрос из бд,, где располагаются города РФ  -->
+                              </select>
                            </div>
                         </div>
                         <div class="col-md-6 col-md-offset-4" style="padding-top: 20px">
