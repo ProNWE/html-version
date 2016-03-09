@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="Новое мероприятие - ghjljk;tybt">
+   <meta name="keywords" content="ЗАПОЛНИТЬ!">
+   <title>Новое мероприятие - ProNWE.ru</title>
+   <!-- =============== VENDOR STYLES ===============-->
+   <!-- FONT AWESOME-->
+   <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+   <!-- SIMPLE LINE ICONS-->
+   <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+   <!-- WHIRL (spinners)-->
+   <link rel="stylesheet" href="vendor/whirl/dist/whirl.css">
+   <!-- ANIMATE-->
+   <link rel="stylesheet" href="vendor/animate.css/animate.min.css">
+   <!-- CROPPER-->
+   <link rel="stylesheet" href="vendor/cropper/dist/cropper.css">
+   <!-- CHOSEN-->
+   <link rel="stylesheet" href="vendor/chosen_v1.2.0/chosen.min.css">
+   <!-- WHIRL (spinners)-->
+   <link rel="stylesheet" href="vendor/whirl/dist/whirl.css">
+   
+   <!-- =============== BOOTSTRAP STYLES ===============-->
+   <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
+   <!-- =============== APP STYLES ===============-->
+   <link rel="stylesheet" href="css/app.css" id="maincss">
+   <!-- =============== PRONWE STYLES ===============-->
+   <link rel="stylesheet" href="css/pronwe.css" id="nwe">
+</head>
+
+<body>
+   <div class="wrapper">
+      <header class="topnavbar-wrapper">
+         <nav role="navigation" class="navbar topnavbar">
+            <div class="navbar-header">
+               <a href="#/" class="navbar-brand">
+                  <div class="brand-logo">
+                     <img src="img/ProNWE_logo.svg" alt="App Logo" class="img-responsive">
+                  </div>
+                  <div class="brand-logo-collapsed">
+                     <img src="img/ProNWE_logo_small.svg" alt="Logo" class="img-responsive">
+                  </div>
+               </a>
+            </div>
+            <div class="nav-wrapper">
+               <!-- LEFT NAVBAR -->
+               <ul class="nav navbar-nav">
+                  <!-- SHOW/HIDDEN ASIDE -->
+                  <li>
+                     <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                     <a href="#" data-toggle-state="aside-collapsed" class="hidden-xs">
+                        <em class="fa fa-navicon"></em>
+                     </a>
+                     <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+                     <a href="#" data-toggle-state="aside-toggled" data-no-persist="true" class="visible-xs sidebar-toggle">
+                        <em class="fa fa-navicon"></em>
+                     </a>
+                  </li>
+                  <!-- USER PROFILE -->
+                  <li>
+                     <a href="#" title="Профиль">
+                        <em class="icon-user"></em>
+                     </a>
+                  </li>
+                  <!-- FAQ -->
+                  <li>
+                     <a href="#" title="FAQ">
+                        <em class="icon-info"></em>
+                     </a>
+                  </li>
+               </ul>
+               <!-- RIGHT NAVBAR -->
+               <ul class="nav navbar-nav navbar-right" style="margin-right:0px;">
+                  <!-- SEARCH ICON -->
+                  <li>
+                     <a href="#" data-search-open="" title="Поиск">
+                        <em class="icon-magnifier"></em>
+                     </a>
+                  </li>
+
+                  <!-- NOTIFICATION -->
+                  <li class="dropdown dropdown-list">
+                     <a href="#" data-toggle="dropdown" aria-expanded="true" title="Уведомления">
+                        <em class="icon-bell"></em>
+                        <div class="label label-danger">35</div>
+                     </a>
+                     <ul class="dropdown-menu animated flipInX">
+                        <li>
+                           <div class="list-group">
+
+                              <a href="#" class="list-group-item">
+                                 <div class="media-box">
+                                    <div class="pull-left">
+                                       <em class="fa fa-thumbs-o-up fa-2x text-danger"></em>
+                                    </div>
+                                    <div class="media-box-body clearfix">
+                                       <p class="m0">Лайки</p>
+                                       <p class="m0 text-muted">
+                                          <small>20 новых лайков</small>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </a>
+
+                              <a href="#" class="list-group-item">
+                                 <div class="media-box">
+                                    <div class="pull-left">
+                                       <em class="fa fa-comments-o fa-2x text-warning"></em>
+                                    </div>
+                                    <div class="media-box-body clearfix">
+                                       <p class="m0">Отзывы</p>
+                                       <p class="m0 text-muted">
+                                          <small>У Вам 10 непрочитанных отзывов</small>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </a>
+
+                              <a href="#" class="list-group-item">
+                                 <div class="media-box">
+                                    <div class="pull-left">
+                                       <em class="fa fa-user-plus fa-2x text-info"></em>
+                                    </div>
+                                    <div class="media-box-body clearfix">
+                                       <p class="m0">Подписчики</p>
+                                       <p class="m0 text-muted">
+                                          <small>5 новых подписчиков</small>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+                        </li>
+                     </ul>
+                  </li>
+
+                  <!-- TWITTER -->
+                  <li class="dropdown dropdown-list">
+                     <a href="#" data-toggle="dropdown" title="Твиттер">
+                        <em class="icon-social-twitter"></em>
+                     </a>
+                     <div class="dropdown-menu twitter animated bounceInDown">
+                        <a class="twitter-timeline list-group-item" height="300" data-dnt="true" href="https://twitter.com/ProNWERU" data-widget-id="700100240783896577">Твиты от @ProNWERU</a>
+                     </div>
+                  </li>
+                  
+                  <!-- LOGOUT -->
+                  <li>
+                     <a href="#" title="Выход">
+                        <em class="icon-logout"></em>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+
+            <!-- SEARCH FORM -->
+            <form role="search" action="search.html" class="navbar-form">
+               <div class="form-group has-feedback">
+                  <input type="text" placeholder="Введите и нажмите Enter" class="form-control">
+                  <div data-search-dismiss="" class="fa fa-times form-control-feedback"></div>
+               </div>
+               <button type="submit" class="hidden btn btn-default">Поиск</button>
+            </form>
+         </nav>
+      </header>
+      
+      <aside class="aside">
+         <div class="aside-inner">
+            <nav data-sidebar-anyclick-close="" class="sidebar">
+               <ul class="nav">                  
+                  <!-- LEFT NAVIGATION -->
+                  <li class="nav-heading">
+                     <span>Навигация</span>
+                  </li>
+                  <!--<li class=" ">
+                     <a href="#organisationLink" title="Организации" data-toggle="collapse">
+                        <em class="icon-briefcase"></em>
+                        <span>Организации</span>
+                     </a>
+                     <ul id="organisationLink" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Организации</li>
+                        <li class=" ">
+                           <a href="" title="Мои организации">
+                              <span>Мои организации</span>
+                           </a>
+                        </li>
+                  <li class=" ">
+                           <a href="" title="Список организаций">
+                              <span>Список организаций</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>-->
+                  <li class=" ">
+                     <a href="#eventLink" title="Мои мероприятия" data-toggle="collapse">
+                        <em class="icon-notebook"></em>
+                        <span>Мои мероприятия</span>
+                     </a>
+                  </li>
+                  <li class=" ">
+                     <a href="#eventLink" title="Все мероприятия" data-toggle="collapse">
+                        <em class="icon-list"></em>
+                        <span>Все мероприятия</span>
+                     </a>
+                  </li>
+                  <li class=" ">
+                     <a href="" title="Создать мероприятие" data-toggle="collapse">
+                        <em class="icon-plus"></em>
+                        <span>Создать мероприятие</span>
+                    </a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+         <!-- END Sidebar (left)-->
+      </aside>
+      
+      <!-- MAIN SECTION -->
+      <section>
+         <div class="content-wrapper">
+            <h3>Продолжение создания нового мероприятия</h3>
+            
+            <div class="panel panel-default">
+               <div class="panel-heading" style="font-size: 1.2em">Необходимо заполнить всю информацию, касающююся участников, жюри и этапов мероприятия.</div>
+               <div class="panel-body">
+                  <form id="continue-add-new-event-form" role="form" class="form-horizontal">                  
+                     <div>
+                        <!-- START PARTICIPANT -->
+                        <h4>Участники
+                           <br>
+                           <small>Добавление участников мероприятия</small>
+                        </h4>
+                        <fieldset>
+                        <div id="add_participant" role="tablist" aria-multiselectable="true" class="panel-group">
+                           <!-- PARTICIPANT 1 -->
+                           <div class="panel panel-default">
+                              <div id="participant_1" role="tab" class="panel-heading">
+                                 <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#description_1" aria-expanded="false" aria-controls="description_1">Участник 1 (можно поменять название через x-editoble)</a>
+                                 </h4>
+                              </div>
+                              <div id="description_1" role="tabpanel" aria-labelledby="headingOne" class="panel-collapse collapse">
+                                 <div class="panel-body">
+                                    Инпуты добавления инфо об участнике: ФИО, описание, фото(можешь оставить каккнопку, я вставлю cropper)
+                                    <br>
+                                    <label for="userName">User name *</label>
+                                    <input id="userName" name="userName" type="text" class="form-control required" aria-required="true">
+                                    <br>
+                                    тут косяк, если открыто окно и не введен текст, он выдает ошибку, а если не открыто окно, то он спокойно переходит!
+                                 </div>
+                              </div>
+                           </div>
+
+                           <!-- PARTICIPANT 2 -->
+                           <div class="panel panel-default">
+                              <div id="participant_2" role="tab" class="panel-heading">
+                                 <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#description_2" aria-expanded="false" aria-controls="description_2" class="collapsed">Участник 2 (можно поменять название через x-editoble)</a>
+                                 </h4>
+                              </div>
+                              <div id="description_2" role="tabpanel" aria-labelledby="headingTwo" class="panel-collapse collapse">
+                                 <div class="panel-body">
+
+                                 </div>
+                              </div>
+                           </div>
+
+                           <!-- кнопка доюавления следующего участника -->
+                           
+                        </div>
+                        </fieldset>
+                        <!-- END PARTICIPANT -->
+
+                        <!-- START JUDGE -->
+                        <h4>Жюри
+                           <br>
+                           <small>Добавление жюри мероприятия</small>
+                        </h4>
+                        <fieldset>
+                           Так же как и участников! Храним: ФИО, емайл,должность и фото(также могу сделать я)
+                        </fieldset>
+                        <!-- END JUDGE -->
+
+                        <!-- START STARE -->
+                        <h4>Этапы мероприятия
+                           <br>
+                           <small>Добавление этапов мероприятия</small>
+                        </h4>
+                        <fieldset>
+                           Тут нужно подумать!
+                        </fieldset>
+                        <!-- END STARE -->
+
+                        <!-- START CONFIRME -->
+                        <h4>Подтверждение
+                           <br>
+                           <small>Условия использования платформы</small>
+                        </h4>
+                        <fieldset>
+                           <p class="lead">One last check</p>
+                           <div class="checkbox c-checkbox">
+                              <label>
+                                 <input type="checkbox" required="required" name="terms">
+                                 <span class="fa fa-check"></span>I agree with the Terms and Conditions.</label>
+                           </div>
+                        </fieldset>
+                        <!-- END CONFIRME -->
+                     </div>
+
+                  </form>
+               </div>
+            </div>
+         </div>
+         </section>   
+   <!-- FOOTER -->
+      <footer>
+         <span>&copy; 2016 - ProNWE</span>
+      </footer>
+   </div>
+   <!-- =============== VENDOR SCRIPTS ===============-->
+   <!-- JQUERY-->
+   <script src="vendor/jquery/dist/jquery.js"></script>
+   <!-- BOOTSTRAP-->
+   <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+   <!-- STORAGE API-->
+   <script src="vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
+   <!-- LOCALIZE-->
+   <script src="vendor/jquery-localize-i18n/dist/jquery.localize.js"></script>
+   <!-- CHOSEN-->
+   <script src="vendor/chosen_v1.2.0/chosen.jquery.min.js"></script>
+   <!-- CROPPER-->
+   <script src="vendor/cropper/dist/cropper.js"></script>
+   <!-- JQUERY VALIDATE-->
+   <script src="vendor/jquery-validation/dist/jquery.validate.js"></script>
+   <!-- JQUERY STEPS-->
+   <script src="vendor/jquery.steps/build/jquery.steps.js"></script>
+
+   <!-- =============== APP SCRIPTS ===============-->
+   <script src="js/app.js"></script>
+   <!-- =============== TWITTER SCRIPTS ===============-->
+   <script src="js/twitter.js"></script>
+
+   <!-- START WIZARD SCRIPT-->
+   <script>
+   (function(window, document, $, undefined){
+      $(function(){
+         var form = $("#continue-add-new-event-form");
+         form.validate({
+            errorPlacement: function errorPlacement(error, element) { element.before(error); },
+            rules: {
+               confirm: {
+                  equalTo: "#password"
+               }
+            }
+         });
+         form.children("div").steps({
+            headerTag: "h4",
+            bodyTag: "fieldset",
+            transitionEffect: "slideLeft",
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+               form.validate().settings.ignore = ":disabled,:hidden";
+               return form.valid();
+            },
+            onFinishing: function (event, currentIndex)
+            {
+               form.validate().settings.ignore = ":disabled";
+               return form.valid();
+            },
+            onFinished: function (event, currentIndex)
+            {
+               alert("Submitted!");
+               // Submit form
+               $(this).submit();
+            }
+         });
+      });
+   })(window, document, window.jQuery);
+   </script>
+
+
+
+
+   <!-- START UPDATE PHOTO -->
+   <div class="update-overlay" tabindex="-1"></div>
+   <div class="update-alert animated" data-allow-outside-click="false" style="display:none">
+      <div class="update-alert-header">
+         <button type="button" class="update-alert-close">Закрыть</button>
+         <h4 class="update-alert-title">Загрузка новой обложки</h4>
+      </div>
+      <div class="update-alert-body">
+         <div id="select-photo" class="animated">
+            <h5>
+               Загрузите новую обложку для своей страницы мероприятия<br><br>
+               Вы можете загрузить изображение в формате JPG, GIF или PNG.
+            </h5>
+            <br>
+            <div class="row">
+               <label for="inputImage" title="Выберите файл" class="btn btn-choose update-alert-choose">
+               <input id="inputImage" name="file" type="file" accept="image/jpeg,image/gif,image/png" class="sr-only">
+                  <span class="fa fa-upload"> Выберите файл</span>
+               </label>
+            </div>
+            <br>
+            <h5>Если у Вас возникают проблемы с загрузкой, попробуйте выбрать изобржение меньшего размера</h5>
+         </div>
+         
+         <div id="edit-photo" class="animated" style="display: none;">
+            <h5>Выбранная область будет показываться на Вашей странице.</h5>
+               <br>
+            <div class="img-container mb-lg" >
+               <img id="photo" src="" alt="Picture" class="cropper-hidden" >
+            </div>
+            <div class="row">
+               <div class="col-md-6 btn_area">
+                  <button id="save-photo" type="button" class="btn">Сохранить</button>   
+               </div>
+               <div class="col-md-6 btn_area">
+                  <button type="button" class="btn btn-another">Выбрать другой файл</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script type="text/javascript">
+      $("#update-photo").click(function (){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+         $(".update-overlay").css("display","block");
+         $(".update-alert").removeClass("bounceOut").addClass("bounceIn").css("display","block");
+      });
+      $(".update-alert-close").click(function (){
+         $(".update-alert").removeClass("bounceIn").addClass("bounceOut");
+         $(".update-overlay").css("display","none");
+      });
+      $("#photo").cropper({
+         mouseWheelZoom: false,
+         mavable: false,      
+         built: function () {
+            $("#photo").cropper("setAspectRatio", 1 / 1);
+         }
+      });
+      $('input[type=file]').on('change',function(){
+         $("#select-photo").css("display","none");
+         $("#edit-photo").css("display","block");
+      });
+      $(".btn-another").click(function(){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+      });
+   </script>
+   <!-- END UPDATE PHOTO -->    
+
+</body>
+
+</html>

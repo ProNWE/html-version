@@ -5675,6 +5675,12 @@ body .bootstrap-tagsinput .tag {
             width: 25%;
         }
 
+        @media only screen and (max-width:836px) {
+            .wizard > .steps > ul > li {
+                width: 100%;       
+            }
+        }
+
     .wizard > .content {
         background: #fff;
         display: block;
