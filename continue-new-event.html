@@ -29,6 +29,9 @@
    <link rel="stylesheet" href="css/app.css" id="maincss">
    <!-- =============== PRONWE STYLES ===============-->
    <link rel="stylesheet" href="css/pronwe.css" id="nwe">
+   
+   <link rel="stylesheet" href="css/newevent.css">
+   
 </head>
 
 <body>
@@ -235,40 +238,53 @@
                         </h4>
                         <fieldset>
                         <div id="add_participant" role="tablist" aria-multiselectable="true" class="panel-group">
-                           <!-- PARTICIPANT 1 -->
-                           <div class="panel panel-default panel-demo">
-                              <div id="participant_1" role="tab" class="panel-heading">
-                                 <h4 class="panel-title">
-                                 <a data-toggle="collapse" data-parent="#accordion" href="#description_1" aria-expanded="false" aria-controls="description_1">Участник 1 (можно поменять название через x-editoble)</a>
-                                 <a href="#" data-tool="panel-dismiss" data-toggle="tooltip" title="Удалить участника" class="pull-right"><em class="fa fa-times"></em></a>
-                                 </h4>
-                              </div>
-                              <div id="description_1" role="tabpanel" aria-labelledby="headingOne" class="panel-collapse collapse">
-                                 <div class="panel-body">
-                                    Инпуты добавления инфо об участнике: ФИО, описание, фото(можешь оставить каккнопку, я вставлю cropper)
-                                    <br>
-                                    <label for="userName">User name *</label>
-                                    <input id="userName" name="userName" type="text" class="form-control required" aria-required="true">
-                                    <br>
-                                    тут косяк, если открыто окно и не введен текст, он выдает ошибку, а если не открыто окно, то он спокойно переходит!
-                                 </div>
-                              </div>
-
-                           </div>
-
-                           <!-- PARTICIPANT 2 -->
-                           <div class="panel panel-default">
-                              <div id="participant_2" role="tab" class="panel-heading">
-                                 <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#description_2" aria-expanded="false" aria-controls="description_2" class="collapsed">Участник 2 (можно поменять название через x-editoble)</a>
-                                 </h4>
-                              </div>
-                              <div id="description_2" role="tabpanel" aria-labelledby="headingTwo" class="panel-collapse collapse">
-                                 <div class="panel-body">
-
-                                 </div>
-                              </div>
-                           </div>
-
+                           
+							<ul class="participant-list">
+								<li>
+									<!-- PARTICIPANT 1 -->
+									<div class="panel panel-default panel-demo">
+										<div id="participant_1" role="tab" class="panel-heading">
+											<h4 class="panel-title">
+												<a id="name_1" data-toggle="collapse" data-parent="#accordion" href="#description_1" aria-expanded="false" aria-controls="description_1">Участник 1</a>
+											</h4>
+										</div>
+										<div id="description_1" role="tabpanel" aria-labelledby="headingOne" class="panel-collapse collapse">
+											<div class="panel-body">
+												<label for="input_1">Имя участника</label>
+												<input id="input_1" name="userName1" type="text" class="participant_name form-control required" aria-required="true">
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<a href="#" id="add-participant"class="panel" style="padding:0.5em;"><em class="fa fa-plus"></em></a>
+							<a href="#" id="delete-participant" class="panel" style="padding:0.5em;"><em class="fa fa-minus"></em></a>
+                           
+						<script>
+							var list_counter = 1;
+							$('#delete-participant').on("click", function(){
+								if (list_counter>1)
+								{
+									$('.participant-list li').remove(':last-child');
+									list_counter--;
+								}
+							});
+							$('.participant_name').on("change", function(){ /* Не видит недавно добавленные элементы */
+								if ($(this).val()!=''){
+									var temp = $(this).attr("id");
+									temp = temp.substr(temp.lastIndexOf('_')+1, temp.length);
+									alert(temp);
+									$('#name_'+temp).text( $(this).val() );
+								}
+							});
+							$('#add-participant').on("click", function(){
+								list_counter++;
+								var temp = "<li><div class='panel panel-default'><div id='participant_" + list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='name_" + list_counter + "' data-toggle='collapse' data-parent='#accordion' href='#description_" + list_counter + "' aria-expanded='false' aria-controls='description_" + list_counter + "' class='collapsed'>Участник " + list_counter + "</a></h4></div><div id='description_" + list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'><label for='input_" + list_counter + "'>Имя участника</label><input id='input_" + list_counter + "' name='userName2' type='text' class='participant_name form-control required' aria-required='true'></div></div></div></li>";
+								//alert(temp);
+								$('.participant-list').append(temp);
+							});
+						</script>
+						
                            <!-- кнопка доюавления следующего участника -->
                            
                         </div>
