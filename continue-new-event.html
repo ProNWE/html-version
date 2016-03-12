@@ -227,7 +227,7 @@
                <div class="panel panel-default">
                   <div class="panel-heading" style="font-size: 1.2em">Необходимо заполнить всю информацию, касающююся участников, жюри и этапов мероприятия.</div>
                   <div class="panel-body">
-                     <form id="continue-add-new-event-form" name="event_info" role="form" class="form-horizontal" action="handler.php" method="POST" style="position: relative;">                  
+                     <form id="continue-add-new-event-form" name="event_info" role="form" class="form-horizontal" action="" method="POST" style="position: relative;">                  
                         <div style="position: relative;">
                            <!-- START PARTICIPANT -->
                            <h4>Участники
@@ -237,9 +237,31 @@
                            <fieldset style="position: relative;">
 							   <div id="add_participant" role="tablist" aria-multiselectable="true" class="panel-group">
 
-								  <ul class="participant-list">
+								<ul class="participant-list">
 									 <!-- participant -->
-								  </ul>
+                            <li>
+                              <div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'>
+                                 <div id='participant_0' role='tab' class='panel-heading'>
+                                    <h4 class='panel-title'>kek
+                                       <a type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_0'>
+                                          <em class='fa fa-times'></em>
+                                       </a>
+                                    </h4>
+                                 </div>
+                                 <div id='description_0' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'>
+                                    <div class='panel-body'> 
+                                       <div class='col-md-6'>
+                                          <textarea name='participant_description_0' placeholder='Описание участника, его достижения и др.' class='form-control' maxlength='1000' rows='6' required></textarea>
+                                       </div>
+                                       <div class='col-md-6'>
+                                          <p>Загрузите фотографию участника или команды (не обязательно)</p> 
+                                             <button type='button' id='participant-photo' name='participant_photo_0' class='btn'>Выберите фотографию</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </li>
+								</ul>
 								  
 								  <div class="col-md-4 btn_area" style="padding-left: 0px;">
 									 <div class="input-group mb">
@@ -253,38 +275,47 @@
 							   </div>
                                 
                                  <script>
-                                    var list_counter = $(".participant-list li").length;
+                                    /* PARTICIPANT */
+                                    $("#name-participant").keyup(function(event){
+                                       if(event.keyCode == 13){
+                                          $$('#add-participant-btn').click();
+                                       }
+                                    });
+                                    var participant_list_counter = $(".participant-list li").length;
                                     $('#add-participant-btn').on("click", function(){
                                        var name = $("#name-participant").val();
                                        if (name != '') {
-                                          list_counter++;
-                                          var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='participant_" + list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='name_" + list_counter + "' data-toggle='collapse' data-parent='#accordion' href='#description_" + list_counter + "' aria-expanded='false' aria-controls='description_" + list_counter + "' class='collapsed'>" + name + "</a><button type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + list_counter + "'><em class='fa fa-times'></em></button></h4></div><div id='description_" + list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'> <input name='participant_description_" + list_counter + "' type='text' placeholder='Описание команды (можно указать состав)' class='form-control peopleinfo-input' required> <p>Загрузите фотографию участника или команды (не обязательно)</p> <input name='participant_photo_" + list_counter + "' type='file' class='form-control peopleinfo-input'> </div></div></div></li>";
+                                          participant_list_counter++;
+                                          var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='participant_" + participant_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'>" + name + "<a type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + participant_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='description_" + participant_list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'> <input name='participant_description_" + participant_list_counter + "' type='text' placeholder='Описание команды (можно указать состав)' class='form-control peopleinfo-input' required> <p>Загрузите фотографию участника или команды (не обязательно)</p> <div class='col-md-4'> <button type='button' id='participant-photo' name='participant_photo_" + participant_list_counter + "' class='btn'>Выберите фотографию</button></div></div></div></div></li>";
                                           $('.participant-list').append(temp);
                                           $("#name-participant").val('');
                                        }
                                     });
-									$('.participant-list').on('click', '.delete-participant', function(){
-										var number = $(this).attr('id');
-										number = number.substr(number.lastIndexOf('_')+1,number.length);
-										var i;
-										for(i=parseInt(number)+1; i<=list_counter; i++)
-										{
-											var liElem = $('.participant-list li:nth-child('+i+')');
-											var setHTML = liElem.html();
-											setHTML = setHTML.replace("id=\"participant_"+i+"\"","id=\"participant_"+(i-1)+"\"");
-											setHTML = setHTML.replace("id=\"name_"+i+"\"","id=\"name_"+(i-1)+"\"");
-											setHTML = setHTML.replace("href=\"#description_"+i+"\"","href=\"#description_"+(i-1)+"\""); 
-											setHTML = setHTML.replace("aria-controls=\"description_"+i+"\"","aria-controls=\"description_"+(i-1)+"\"");
-											setHTML = setHTML.replace("id=\"delete-participant_"+i+"\"","id=\"delete-participant_"+(i-1)+"\"");
-											setHTML = setHTML.replace("id=\"description_"+i+"\"","id=\"description_"+(i-1)+"\"");
-											setHTML = setHTML.replace("name=\"participant_description_"+i+"\"","name=\"participant_description_"+(i-1)+"\""); //
-											setHTML = setHTML.replace("name=\"participant_photo_"+i+"\"","name=\"participant_photo_"+(i-1)+"\"");
-											liElem.html(setHTML);
-										}
-										list_counter--;
-										$('.participant-list li').remove(':nth-child(' + number + ')');
-									});
+         									$('.participant-list').on('click', '.delete-participant', function(){
+         										var number = $(this).attr('id');
+         										number = number.substr(number.lastIndexOf('_')+1,number.length);
+         										var i;
+         										for(i=parseInt(number)+1; i<=participant_list_counter; i++)
+         										{
+         											var liElem = $('.participant-list li:nth-child('+i+')');
+         											var setHTML = liElem.html();
+         											setHTML = setHTML.replace("id=\"participant_"+i+"\"","id=\"participant_"+(i-1)+"\"");
+         											setHTML = setHTML.replace("id=\"name_"+i+"\"","id=\"name_"+(i-1)+"\"");
+         											setHTML = setHTML.replace("href=\"#description_"+i+"\"","href=\"#description_"+(i-1)+"\""); 
+         											setHTML = setHTML.replace("aria-controls=\"description_"+i+"\"","aria-controls=\"description_"+(i-1)+"\"");
+         											setHTML = setHTML.replace("id=\"delete-participant_"+i+"\"","id=\"delete-participant_"+(i-1)+"\"");
+         											setHTML = setHTML.replace("id=\"description_"+i+"\"","id=\"description_"+(i-1)+"\"");
+         											setHTML = setHTML.replace("name=\"participant_description_"+i+"\"","name=\"participant_description_"+(i-1)+"\""); //
+         											setHTML = setHTML.replace("name=\"participant_photo_"+i+"\"","name=\"participant_photo_"+(i-1)+"\"");
+         											liElem.html(setHTML);
+         										}
+         										participant_list_counter--;
+         										$('.participant-list li').remove(':nth-child(' + number + ')');
+         									});
 									
+
+
+                           /* JUDGE */
 									var judge_list_counter = $(".judge-list li").length;
                                     $('#add-judge-btn').on("click", function(){
                                        var name = $("#name-judge").val();
@@ -415,9 +446,8 @@
                                  <label>
                                     <input type="checkbox" name="terms" required>
                                     <span class="fa fa-check"></span>I agree with the Terms and Conditions.
-								</label>
+								          </label>
                               </div>
-							  <input type="submit" value="Создать мероприятие" class="btn" style="width:50%;">
                            </fieldset>
                            <!-- END CONFIRME -->
                         </div>
@@ -460,14 +490,6 @@
    (function(window, document, $, undefined){
       $(function(){
          var form = $("#continue-add-new-event-form");
-         form.validate({
-            errorPlacement: function errorPlacement(error, element) { element.before(error); },
-            rules: {
-               confirm: {
-                  equalTo: "#password"
-               }
-            }
-         });
          form.children("div").steps({
             headerTag: "h4",
             bodyTag: "fieldset",
@@ -538,7 +560,7 @@
       </div>
    </div>
    <script type="text/javascript">
-      $("#update-photo").click(function (){
+      $("#participant-photo").click(function (){
          $("#select-photo").css("display","block");
          $("#edit-photo").css("display","none");
          $(".update-overlay").css("display","block");
