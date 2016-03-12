@@ -256,25 +256,24 @@
                                        <div class='col-md-3 btn_area text-center'>
                                           <p>Загрузите фотографию участника </p> 
                                           <small>размер не должен превышать 150x150px</small>
-                                          <div class="file-upload">
-                                             <button type="button">Выбрать фото</button>
+                                          <div class='file-upload'>
+                                             <button type='button'>Выбрать фото</button>
                                              <input type='file' name='participant_photo_0' accept='image/jpeg,image/gif,image/png' onchange='loadFile(event)'>
                                           </div>
                                        </div>
                                        <div class='col-md-3 btn_area text-center'>
                                           <img id='output' src='img/no-photo.png' class='input-img-prevew'>
                                        </div>
-                                       
-                                                <script>
-                                                  var loadFile = function(event) {
-                                                    var reader = new FileReader();
-                                                    reader.onload = function(){
-                                                      var output = document.getElementById('output');
-                                                      output.src = reader.result;
-                                                    };
-                                                    reader.readAsDataURL(event.target.files[0]);
-                                                  };
-                                                </script>
+                                       <script>
+                                          var loadFile = function(event) {
+                                          var reader = new FileReader();
+                                          reader.onload = function(){
+                                             var output = document.getElementById('output');
+                                             output.src = reader.result;
+                                             };
+                                          reader.readAsDataURL(event.target.files[0]);
+                                          };
+                                       </script>
                                     </div>
                                  </div>
                               </div>
@@ -291,7 +290,7 @@
 								  </div>   
 
 							   </div>
-                                
+                                 <script>var loadFile = function(event) {var reader = new FileReader();reader.onload = function(){var output = document.getElementById('output');output.src = reader.result;};reader.readAsDataURL(event.target.files[0]);};</script>  
                                  <script>
                                     /* PARTICIPANT */
                                     $("#name-participant").keyup(function(event){
@@ -304,11 +303,25 @@
                                        var name = $("#name-participant").val();
                                        if (name != '') {
                                           participant_list_counter++;
-                                          var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='participant_" + participant_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'>" + name + "<a type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + participant_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='description_" + participant_list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'> <input name='participant_description_" + participant_list_counter + "' type='text' placeholder='Описание команды (можно указать состав)' class='form-control peopleinfo-input' required> <p>Загрузите фотографию участника или команды (не обязательно)</p> <div class='col-md-4'> <button type='button' id='participant-photo' name='participant_photo_" + participant_list_counter + "' class='btn'>Выберите фотографию</button></div></div></div></div></li>";
+                                          var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='participant_" + participant_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'>" + name + "<a type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + participant_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='description_" + participant_list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'> <div class='col-md-6 btn_area'><textarea style='resize: none;'' name='participant_description_" + participant_list_counter + "' placeholder='Описание участника, его достижения и др.' class='form-control error' aria-required='true' maxlength='1000' rows='6' required></textarea></div><div class='col-md-3 btn_area text-center'><p>Загрузите фотографию участника </p> <small>размер не должен превышать 150x150px</small><div class='file-upload'><button type='button'>Выбрать фото</button><input type='file' name='participant_photo_" + participant_list_counter + "' accept='image/jpeg,image/gif,image/png' onchange='loadFile(event)'></div></div><div class='col-md-3 btn_area text-center'><img id='output_" + participant_list_counter + "' src='img/no-photo.png' class='input-img-prevew'></div></div></div></li>";
+                                             
                                           $('.participant-list').append(temp);
                                           $("#name-participant").val('');
                                        }
                                     });
+                                    /*
+                                    var loadFile = function(event) {
+                                       var reader = new FileReader();
+                                       reader.onload = function(){
+                                          var output = document.getElementById('output');
+                                          output.src = reader.result;
+                                       };
+                                       reader.readAsDataURL(event.target.files[0]);
+                                    };
+                                    */
+
+
+
          									$('.participant-list').on('click', '.delete-participant', function(){
          										var number = $(this).attr('id');
          										number = number.substr(number.lastIndexOf('_')+1,number.length);
