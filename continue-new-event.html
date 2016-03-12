@@ -250,13 +250,31 @@
                                  </div>
                                  <div id='description_0' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'>
                                     <div class='panel-body'> 
-                                       <div class='col-md-6'>
-                                          <textarea name='participant_description_0' placeholder='Описание участника, его достижения и др.' class='form-control' maxlength='1000' rows='6' required></textarea>
+                                       <div class='col-md-6 btn_area'>
+                                          <textarea style="resize: none;" name='participant_description_0' placeholder='Описание участника, его достижения и др.' class='form-control error' aria-required="true" maxlength='1000' rows='6' required></textarea>
                                        </div>
-                                       <div class='col-md-6'>
-                                          <p>Загрузите фотографию участника или команды (не обязательно)</p> 
-                                             <button type='button' id='participant-photo' name='participant_photo_0' class='btn'>Выберите фотографию</button>
+                                       <div class='col-md-3 btn_area text-center'>
+                                          <p>Загрузите фотографию участника </p> 
+                                          <small>размер не должен превышать 150x150px</small>
+                                          <div class="file-upload">
+                                             <button type="button">Выбрать фото</button>
+                                             <input type='file' name='participant_photo_0' accept='image/jpeg,image/gif,image/png' onchange='loadFile(event)'>
+                                          </div>
                                        </div>
+                                       <div class='col-md-3 btn_area text-center'>
+                                          <img id='output' src='img/no-photo.png' class='input-img-prevew'>
+                                       </div>
+                                       
+                                                <script>
+                                                  var loadFile = function(event) {
+                                                    var reader = new FileReader();
+                                                    reader.onload = function(){
+                                                      var output = document.getElementById('output');
+                                                      output.src = reader.result;
+                                                    };
+                                                    reader.readAsDataURL(event.target.files[0]);
+                                                  };
+                                                </script>
                                     </div>
                                  </div>
                               </div>
