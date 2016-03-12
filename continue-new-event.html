@@ -243,16 +243,11 @@
                               <div class="col-md-4 btn_area" style="padding-left: 0px;">
                                  <div class="input-group mb">
                                     <input id="name-participant" type="text" placeholder="ФИО участника ..." class="form-control">
-                                    <div class="input-group-btn">
-                                       <button id="add-participant-btn" type="button" class="btn btn-default">Добавить</button>
+                                    <div class="input-group-btn" >
+                                       <button id="add-participant-btn" style="height:35px;" type="button" class="btn btn-default">Добавить</button>
                                     </div>
                                  </div>
 
-                                 <!-- пробовал по другому -->
-                                 <br>
-                                 <ul id="buildyourform">
-                                    <input type="button" value="+" class="add" id="add" >
-                                 </ul>
                               </div>   
 
                            </div>
@@ -263,52 +258,22 @@
                                        var name = $("#name-participant").val();
                                        if (name != '') {
                                           list_counter++;
-                                          var temp = "<li value='" + list_counter + "'><div class='panel panel-default animated fadeInDown'><div id='participant_" + list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='name_" + list_counter + "' data-toggle='collapse' data-parent='#accordion' href='#description_" + list_counter + "' aria-expanded='false' aria-controls='description_" + list_counter + "' class='collapsed'>" + name + "</a><button type='button' class='pull-right' title='Удалить участника' id='delete-participant'><em class='fa fa-times'></em></button></h4></div><div id='description_" + list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'><label for='input_" + list_counter + "</div></div></div></li>";
+                                          var temp = "<li><div class='panel panel-default animated fadeInDown'><div id='participant_" + list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='name_" + list_counter + "' data-toggle='collapse' data-parent='#accordion' href='#description_" + list_counter + "' aria-expanded='false' aria-controls='description_" + list_counter + "' class='collapsed'>" + name + "</a><button type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + list_counter + "'><em class='fa fa-times'></em></button></h4></div><div id='description_" + list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'><label for='input_" + list_counter + "</div></div></div></li>";
                                           $('.participant-list').append(temp);
                                           $("#name-participant").val('');
-
-                                          $('#delete-participant').on("click", function(){
-                                             var num = $(".participant-list li:selected").text();
-                                             alert(num);
-                                          });
                                        }
                                     });
-
-                                    
-                                    // пробовал по другому 
-                                    $("#buildyourform").on('click', '#add', function () {
-                                         var intId = $("#buildyourform li").length + 1;
-                                         var intIdnext = $("#buildyourform li").length + 2;
-                                         var fieldWrapper = $("<li class='fieldwrapper' id='participant-" + intId + "' />");
-                                         var fName = $("<input type='text' id='kek' name='participant-name-" + intId + "'/>");
-                                         var removeButton = $("<input type='button' class='remove' value='-' name='" + intIdnext + "' />");
-
-                                         
-                                         removeButton.click(function () {
-                                             var num = $(this).attr('name');
-                                             var intId = $("#buildyourform li").length;
-
-                                             for (var i = num; i <= intId; i++) {
-                                                var j=i-1;
-                                                
-                                                var partID = "participant-" + j;
-                                                var partIDnext = "participant-" + i;
-                                                var partName = "participant-name-" + j;
-                                                var partNamenext = "participant-name-" + i;
-                                                
-                                                
-                                                $('#partIDnext').each(function(){
-                                                   this.id = partID;
-                                                   $('#partNamenext').attr('#partNamenext','partName');
-                                                });
-                                             };
-                                             $(this).parent().remove();
-                                             
-                                         });
-                                         fieldWrapper.append(fName);
-                                         fieldWrapper.append(removeButton);
-                                         $("#buildyourform").append(fieldWrapper);
-                                     });
+									$('.participant-list').on('click', '.delete-participant', function(){
+										var number = $(this).attr('id');
+										number = number.substr(number.lastIndexOf('_')+1,number.length);
+										/*var i;
+										for(i=number+1; i<list_counter; i++)
+										{
+											$('#participant_'+i).attr(id,"participant_"+i-1); добить перераспределение айдишников при удалении
+										}*/
+										//list_counter--;
+										$('.participant-list li').remove(':nth-child(' + number + ')');
+									});
                                  </script>
 
                                  
