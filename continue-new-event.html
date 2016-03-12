@@ -227,7 +227,7 @@
                <div class="panel panel-default">
                   <div class="panel-heading" style="font-size: 1.2em">Необходимо заполнить всю информацию, касающююся участников, жюри и этапов мероприятия.</div>
                   <div class="panel-body">
-                     <form id="continue-add-new-event-form" role="form" class="form-horizontal" style="position: relative;">                  
+                     <form id="continue-add-new-event-form" name="event_info" role="form" class="form-horizontal" action="handler.php" method="POST" style="position: relative;">                  
                         <div style="position: relative;">
                            <!-- START PARTICIPANT -->
                            <h4>Участники
@@ -235,22 +235,22 @@
                               <small>Добавление участников мероприятия</small>
                            </h4>
                            <fieldset style="position: relative;">
-                           <div id="add_participant" role="tablist" aria-multiselectable="true" class="panel-group">
+							   <div id="add_participant" role="tablist" aria-multiselectable="true" class="panel-group">
 
-                              <ul class="participant-list">
-                                 <!-- participant -->
-                              </ul>
-                              <div class="col-md-4 btn_area" style="padding-left: 0px;">
-                                 <div class="input-group mb">
-                                    <input id="name-participant" type="text" placeholder="ФИО участника ..." class="form-control">
-                                    <div class="input-group-btn" >
-                                       <button id="add-participant-btn" style="height:35px;" type="button" class="btn btn-default">Добавить</button>
-                                    </div>
-                                 </div>
+								  <ul class="participant-list">
+									 <!-- participant -->
+								  </ul>
+								  
+								  <div class="col-md-4 btn_area" style="padding-left: 0px;">
+									 <div class="input-group mb">
+										<input id="name-participant" type="text" placeholder="ФИО участника" class="form-control">
+										<div class="input-group-btn" >
+										   <button id="add-participant-btn" style="height:35px;" class="btn btn-default" type="button">Добавить</button>
+										</div>
+									 </div>
+								  </div>   
 
-                              </div>   
-
-                           </div>
+							   </div>
                                 
                                  <script>
                                     var list_counter = $(".participant-list li").length;
@@ -258,7 +258,7 @@
                                        var name = $("#name-participant").val();
                                        if (name != '') {
                                           list_counter++;
-                                          var temp = "<li><div class='panel panel-default animated fadeInDown'><div id='participant_" + list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='name_" + list_counter + "' data-toggle='collapse' data-parent='#accordion' href='#description_" + list_counter + "' aria-expanded='false' aria-controls='description_" + list_counter + "' class='collapsed'>" + name + "</a><button type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + list_counter + "'><em class='fa fa-times'></em></button></h4></div><div id='description_" + list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'><label for='input_" + list_counter + "</div></div></div></li>";
+                                          var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='participant_" + list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='name_" + list_counter + "' data-toggle='collapse' data-parent='#accordion' href='#description_" + list_counter + "' aria-expanded='false' aria-controls='description_" + list_counter + "' class='collapsed'>" + name + "</a><button type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + list_counter + "'><em class='fa fa-times'></em></button></h4></div><div id='description_" + list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'> <input name='participant_description_" + list_counter + "' type='text' placeholder='Описание команды (можно указать состав)' class='form-control peopleinfo-input' required> <p>Загрузите фотографию участника или команды (не обязательно)</p> <input name='participant_photo_" + list_counter + "' type='file' class='form-control peopleinfo-input'> </div></div></div></li>";
                                           $('.participant-list').append(temp);
                                           $("#name-participant").val('');
                                        }
@@ -266,19 +266,89 @@
 									$('.participant-list').on('click', '.delete-participant', function(){
 										var number = $(this).attr('id');
 										number = number.substr(number.lastIndexOf('_')+1,number.length);
-										/*var i;
-										for(i=number+1; i<list_counter; i++)
+										var i;
+										for(i=parseInt(number)+1; i<=list_counter; i++)
 										{
-											$('#participant_'+i).attr(id,"participant_"+i-1); добить перераспределение айдишников при удалении
-										}*/
-										//list_counter--;
+											var liElem = $('.participant-list li:nth-child('+i+')');
+											var setHTML = liElem.html();
+											setHTML = setHTML.replace("id=\"participant_"+i+"\"","id=\"participant_"+(i-1)+"\"");
+											setHTML = setHTML.replace("id=\"name_"+i+"\"","id=\"name_"+(i-1)+"\"");
+											setHTML = setHTML.replace("href=\"#description_"+i+"\"","href=\"#description_"+(i-1)+"\""); 
+											setHTML = setHTML.replace("aria-controls=\"description_"+i+"\"","aria-controls=\"description_"+(i-1)+"\"");
+											setHTML = setHTML.replace("id=\"delete-participant_"+i+"\"","id=\"delete-participant_"+(i-1)+"\"");
+											setHTML = setHTML.replace("id=\"description_"+i+"\"","id=\"description_"+(i-1)+"\"");
+											setHTML = setHTML.replace("name=\"participant_description_"+i+"\"","name=\"participant_description_"+(i-1)+"\""); //
+											setHTML = setHTML.replace("name=\"participant_photo_"+i+"\"","name=\"participant_photo_"+(i-1)+"\"");
+											liElem.html(setHTML);
+										}
+										list_counter--;
 										$('.participant-list li').remove(':nth-child(' + number + ')');
 									});
-                                 </script>
-
-                                 
-   
-                                 
+									
+									var judge_list_counter = $(".judge-list li").length;
+                                    $('#add-judge-btn').on("click", function(){
+                                       var name = $("#name-judge").val();
+                                       if (name != '') {
+                                          judge_list_counter++;
+                                          var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='judge_" + judge_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='judge_name_" + judge_list_counter + "' data-toggle='collapse' data-parent='#accordion' href='#judge_description_" + judge_list_counter + "' aria-expanded='false' aria-controls='judge_description_" + judge_list_counter + "' class='collapsed'>" + name + "</a><button type='button' class='pull-right delete-judge' title='Удалить члена жюри' id='delete-judge_" + judge_list_counter + "'><em class='fa fa-times'></em></button></h4></div><div id='judge_description_" + judge_list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'> <input name='judge_email_" + judge_list_counter + "' type='email' placeholder='Укажите e-mail члена жюри' class='form-control peopleinfo-input' required> <input name='judge_status_" + judge_list_counter + "' type='text' placeholder='Укажите кем является член жюри' class='form-control peopleinfo-input' required> <p>Загрузите фотографию члена жюри (не обязательно)</p> <input name='judge_photo_" + judge_list_counter + "' type='file' class='form-control peopleinfo-input'> </div></div></div></li>";
+                                          $('.judge-list').append(temp);
+                                          $("#name-judge").val('');
+                                       }
+                                    });
+									$('.judge-list').on('click', '.delete-judge', function(){
+										var number = $(this).attr('id');
+										number = number.substr(number.lastIndexOf('_')+1,number.length);
+										var i;
+										for(i=parseInt(number)+1; i<=judge_list_counter; i++)
+										{
+											var liElem = $('.judge-list li:nth-child('+i+')');
+											var setHTML = liElem.html();
+											setHTML = setHTML.replace("id=\"judge_"+i+"\"","id=\"judge_"+(i-1)+"\"");
+											setHTML = setHTML.replace("id=\"judge_name_"+i+"\"","id=\"judge_name_"+(i-1)+"\"");
+											setHTML = setHTML.replace("href=\"#judge_description_"+i+"\"","href=\"#judge_description_"+(i-1)+"\""); 
+											setHTML = setHTML.replace("aria-controls=\"judge_description_"+i+"\"","aria-controls=\"judge_description_"+(i-1)+"\"");
+											setHTML = setHTML.replace("id=\"delete-judge_"+i+"\"","id=\"delete-judge_"+(i-1)+"\"");
+											setHTML = setHTML.replace("id=\"judge_description_"+i+"\"","id=\"judge_description_"+(i-1)+"\"");
+											setHTML = setHTML.replace("name=\"judge_status_"+i+"\"","name=\"judge_status_"+(i-1)+"\""); //
+											setHTML = setHTML.replace("name=\"judge_email_"+i+"\"","name=\"judge_email_"+(i-1)+"\"");
+											setHTML = setHTML.replace("name=\"judge_photo_"+i+"\"","name=\"judge_photo_"+(i-1)+"\"");
+											liElem.html(setHTML);
+										}
+										judge_list_counter--;
+										$('.judge-list li').remove(':nth-child(' + number + ')');
+									});
+									
+									var stage_list_counter = $(".stage-list li").length;
+                                    $('#add-stage-btn').on("click", function(){
+                                       var name = $("#name-stage").val();
+                                       if (name != '') {
+                                          stage_list_counter++;
+                                          var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='stage_" + stage_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='stage_name_" + stage_list_counter + "' data-toggle='collapse' data-parent='#accordion' href='#stage_description_" + stage_list_counter + "' aria-expanded='false' aria-controls='stage_description_" + stage_list_counter + "' class='collapsed'>" + name + "</a><button type='button' class='pull-right delete-stage' title='Удалить члена жюри' id='delete-stage_" + stage_list_counter + "'><em class='fa fa-times'></em></button></h4></div><div id='stage_description_" + stage_list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'> <input name='stage_description_" + stage_list_counter + "' type='text' placeholder='Описание этапа' class='form-control peopleinfo-input' required> </div></div></div></li>";
+                                          $('.stage-list').append(temp);
+                                          $("#name-stage").val('');
+                                       }
+                                    });
+									$('.stage-list').on('click', '.delete-stage', function(){
+										var number = $(this).attr('id');
+										number = number.substr(number.lastIndexOf('_')+1,number.length);
+										var i;
+										for(i=parseInt(number)+1; i<=stage_list_counter; i++)
+										{
+											var liElem = $('.stage-list li:nth-child('+i+')');
+											var setHTML = liElem.html();
+											setHTML = setHTML.replace("id=\"stage_"+i+"\"","id=\"stage_"+(i-1)+"\"");
+											setHTML = setHTML.replace("id=\"stage_name_"+i+"\"","id=\"stage_name_"+(i-1)+"\"");
+											setHTML = setHTML.replace("href=\"#stage_description_"+i+"\"","href=\"#stage_description_"+(i-1)+"\""); 
+											setHTML = setHTML.replace("aria-controls=\"stage_description_"+i+"\"","aria-controls=\"stage_description_"+(i-1)+"\"");
+											setHTML = setHTML.replace("id=\"delete-stage_"+i+"\"","id=\"delete-stage_"+(i-1)+"\"");
+											setHTML = setHTML.replace("id=\"stage_description_"+i+"\"","id=\"stage_description_"+(i-1)+"\"");
+											setHTML = setHTML.replace("name=\"stage_description_"+i+"\"","name=\"stage_description_"+(i-1)+"\"");
+											liElem.html(setHTML);
+										}
+										stage_list_counter--;
+										$('.stage-list li').remove(':nth-child(' + number + ')');
+									});
+                                 </script>                                 
                            </fieldset>
                            <!-- END PARTICIPANT -->
 
@@ -287,8 +357,24 @@
                               <br>
                               <small>Добавление жюри мероприятия</small>
                            </h4>
-                           <fieldset>
+                           <fieldset style="position:relative;">
                               Так же как и участников! Храним: ФИО, емайл,должность и фото(также могу сделать я)
+							  <div id="add_judge" role="tablist" aria-multiselectable="true" class="panel-group">
+
+								  <ul class="judge-list">
+									 <!-- judge -->
+								  </ul>
+								  
+								  <div class="col-md-4 btn_area" style="padding-left: 0px;">
+									 <div class="input-group mb">
+										<input id="name-judge" type="text" placeholder="ФИО члена жюри" class="form-control">
+										<div class="input-group-btn" >
+										   <button id="add-judge-btn" style="height:35px;" class="btn btn-default" type="button">Добавить</button>
+										</div>
+									 </div>
+								  </div>   
+
+							   </div>
                            </fieldset>
                            <!-- END JUDGE -->
 
@@ -297,8 +383,24 @@
                               <br>
                               <small>Добавление этапов мероприятия</small>
                            </h4>
-                           <fieldset>
-                              Тут нужно подумать!
+                           <fieldset style="position:relative;">
+                              
+							  <div id="add_stage" role="tablist" aria-multiselectable="true" class="panel-group">
+
+								  <ul class="stage-list">
+									 <!-- stage-->
+								  </ul>
+								  
+								  <div class="col-md-4 btn_area" style="padding-left: 0px;">
+									 <div class="input-group mb">
+										<input id="name-stage" type="text" placeholder="Название этапа" class="form-control">
+										<div class="input-group-btn" >
+										   <button id="add-stage-btn" style="height:35px;" class="btn btn-default" type="button">Добавить</button>
+										</div>
+									 </div>
+								  </div>   
+
+							   </div>
                            </fieldset>
                            <!-- END STARE -->
 
@@ -311,13 +413,14 @@
                               <p class="lead">One last check</p>
                               <div class="checkbox c-checkbox">
                                  <label>
-                                    <input type="checkbox" required="required" name="terms">
-                                    <span class="fa fa-check"></span>I agree with the Terms and Conditions.</label>
+                                    <input type="checkbox" name="terms" required>
+                                    <span class="fa fa-check"></span>I agree with the Terms and Conditions.
+								</label>
                               </div>
+							  <input type="submit" value="Создать мероприятие" class="btn" style="width:50%;">
                            </fieldset>
                            <!-- END CONFIRME -->
                         </div>
-
                      </form>
                   </div>
                </div>
