@@ -35,53 +35,13 @@
                 form = form.parent();
             }
 
-            var newFileInput = $('<div>')
-                .addClass('image-preview-wrapper')
-                .css({
-                    "box-sizing": "border-box",
-                    "position": "relative",
-                    "max-height": "150px",
-                    "padding":"0.1em",
-                    "overflow": "hidden"
-                })
-                .append($('<div>')
-                    .addClass('image-preview').css({
-                        "box-sizing": "border-box",
-                        "position": "relative",
-                        "-moz-box-sizing": "border-box",
-                        "-webkit-box-sizing": "border-box",
-                        "background-image":"url(img/no-photo.png)",
-                        "border":settings.thumbnail_border,
-                        "box-shadow":settings.thumbnail_shadow,
-                        "-moz-box-shadow":settings.thumbnail_shadow,
-                        "-webkit-box-shadow":settings.thumbnail_shadow,
-                        "width":"145",
-                        "height":"145px",
-                        "background-size":scaleWidth + "px, auto",
-                        "background-position":"50%, 50%",
-                        "display":"inline-block",
-                        "float":"left",
-                        "margin-right":"1em"
-                    })
-                ).append(fileInput.css({
-                    "box-sizing": "border-box",
-                    "position": "relative",
-                    "-moz-box-sizing": "border-box",
-                    "-webkit-box-sizing": "border-box",
-                    "display":"block"
-                })
-            );
-
-            elem.replaceWith(newFileInput);
-
-
             var doImgPreview = function(e) {
                 var files = e.target.files;    
                 for (var i=0, file; file=files[i]; i++) {
                     var number = $('.file-upload').attr('id');
                     number = number.substr(number.lastIndexOf('_')+1,number.length);
                     var labelnumber = ".label-for-photo-error-format_" + number;
-            
+                    alter(labelnumber);
                     if (file.type.match('image.*')) {
                         $('.image-preview').css({
                             "background-image":"url(img/no-photo.png)",

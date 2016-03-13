@@ -1,51 +1,7 @@
-
 $(document).ready(function(){
-   /* PARTICIPANT */
-   $("#name-participant").keyup(function(event){
-      if(event.keyCode == 13){
-         $$('#add-participant-btn').click();
-      }
-   });
-   var participant_list_counter = $(".participant-list li").length;
-      $('#add-participant-btn').on("click", function(){
-         var name = $("#name-participant").val();
-         if (name != '') {
-            participant_list_counter++;
-            var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='participant_" + participant_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'>" + name + "<a type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + participant_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='description_" + participant_list_counter + "' role='tabpanel' aria-labelledby='headingTwo' class='panel-collapse collapse in'><div class='panel-body'> <div class='col-md-6 btn_area'><textarea style='resize: none;'name='participant_description_" + participant_list_counter + "' placeholder='Описание участника, его достижения и др.' class='form-control error' aria-required='true' maxlength='1000' rows='6' required></textarea></div><div class='col-md-3 btn_area text-center'><label class='label-for-photo'>Выберите фотографию участника</label><br><small class='label-for-photo-error-format_" + participant_list_counter + "'>допустимые форматы jpeg,png,gif</small></div><div class='col-md-3 btn_area text-center'><div class='file-upload' id='file-upload_" + participant_list_counter + "'><div class='image-preview-wrapper'><div class='image-preview'></div><input type='file' id='imgPre_" + participant_list_counter + "' name='participant_photo_" + participant_list_counter + "' accept='image/jpeg,image/gif,image/png'></div></div></div></div></div></div></li>";
-            $('.participant-list').append(temp);
-            $("#name-participant").val('');
-         }
-      });
-      
-      $('.participant-list').on('click', '.delete-participant', function(){
-         var number = $(this).attr('id');
-         number = number.substr(number.lastIndexOf('_')+1,number.length);
-         var i;
-         for(i=parseInt(number)+1; i<=participant_list_counter; i++)
-         {
-            var liElem = $('.participant-list li:nth-child('+i+')');
-         	var setHTML = liElem.html();
-         	setHTML = setHTML.replace("id=\"participant_"+i+"\"","id=\"participant_"+(i-1)+"\"");
-         	setHTML = setHTML.replace("id=\"name_"+i+"\"","id=\"name_"+(i-1)+"\"");
-         	setHTML = setHTML.replace("href=\"#description_"+i+"\"","href=\"#description_"+(i-1)+"\""); 
-         	setHTML = setHTML.replace("aria-controls=\"description_"+i+"\"","aria-controls=\"description_"+(i-1)+"\"");
-         	setHTML = setHTML.replace("id=\"delete-participant_"+i+"\"","id=\"delete-participant_"+(i-1)+"\"");
-         	setHTML = setHTML.replace("id=\"description_"+i+"\"","id=\"description_"+(i-1)+"\"");
-         	setHTML = setHTML.replace("name=\"participant_description_"+i+"\"","name=\"participant_description_"+(i-1)+"\""); //
-         	setHTML = setHTML.replace("name=\"participant_photo_"+i+"\"","name=\"participant_photo_"+(i-1)+"\"");
-         	liElem.html(setHTML);
-         }
-         participant_list_counter--;
-         $('.participant-list li').remove(':nth-child(' + number + ')');
-      });
-      
-      $(function() {
-         $('#imgPre_1').imgPreview();
-      });
+   alert(25);
+   
 });
-
-
-
 
                            /* JUDGE 
 									var judge_list_counter = $(".judge-list li").length;

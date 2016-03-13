@@ -26,11 +26,7 @@
     letter-spacing: 10em;     /* IE 9 fix */
     -ms-transform: scale(20); /* IE 9 fix */
     opacity: 0;
-    cursor: pointer
 }
-
-
-
 .image-preview-wrapper{
   box-sizing: border-box; position: relative; max-height: 150px; padding: 0.1em; overflow: hidden;
 }
