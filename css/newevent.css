@@ -8,34 +8,43 @@
 .judge-list li{
 	margin:0.5em 0;
 }
-.input-img-prevew{
-	height: 150px;
-	width: 150px;
-	background-position: center;
-}
-
 .file-upload {
   position: relative;
   overflow: hidden;
-  margin-top: 10px;
   margin-right: auto;
   margin-left: auto;
-  width: 8em;
-
-}
-.file-upload > button{
-    width: 8em;            /* example */
-    height: 100%
+  width: 150px;
+  height: 150px
 }
 .file-upload input[type=file]{
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
     transform: scale(20);
     letter-spacing: 10em;     /* IE 9 fix */
     -ms-transform: scale(20); /* IE 9 fix */
     opacity: 0;
     cursor: pointer
+}
+
+
+
+.image-preview-wrapper{
+  box-sizing: border-box; position: relative; max-height: 150px; padding: 0.1em; overflow: hidden;
+}
+.image-preview{
+  box-sizing: border-box; 
+  position: relative; 
+  border: 5px solid rgb(255, 255, 255); 
+  box-shadow: rgba(0, 0, 0, 0.498039) 0px 0px 4px; 
+  width: 145px; 
+  height: 145px; 
+  display: inline-block; 
+  float: left; 
+  margin-right: 1em; 
+  background-image: url(../img/no-photo.png); 
+  background-size: 210px, auto; 
+  background-position: 50% 50%, 50% 50%;
 }
