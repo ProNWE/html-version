@@ -1,10 +1,6 @@
 .participant-list li{
 	margin-bottom:1em;
 }
-.peopleinfo-input{
-	margin:0.5em 0;
-	display:inline-block;
-}
 .judge-list li{
 	margin:0.5em 0;
 }
@@ -43,4 +39,16 @@
   background-image: url(../img/no-photo.png); 
   background-size: 210px, auto; 
   background-position: 50% 50%, 50% 50%;
+}
+.nav-tabs-li{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+fieldset{
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}
+.btn-submit-participant, .btn-submit-judge, .btn-submit-stage{
+  height: 35px !important;
+  font-size: 14px !important;
 }
