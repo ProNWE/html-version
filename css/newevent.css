@@ -1,8 +1,15 @@
-.participant-list li{
+.participant-list li, .judge-list li, .stage-list li{
 	margin-bottom:1em;
 }
-.judge-list li{
-	margin:0.5em 0;
+.criterion-list{
+  position: relative;
+}
+ul{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.nav-tabs{
+  padding-right: 0px !important; 
 }
 .file-upload {
   position: relative;
@@ -24,7 +31,11 @@
     opacity: 0;
 }
 .image-preview-wrapper{
-  box-sizing: border-box; position: relative; max-height: 150px; padding: 0.1em; overflow: hidden;
+  box-sizing: border-box; 
+  position: relative; 
+  max-height: 150px;
+  padding: 0.1em; 
+  overflow: hidden;
 }
 .image-preview{
   box-sizing: border-box; 
