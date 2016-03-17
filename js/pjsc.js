@@ -1,17 +1,11 @@
 /* START PARTICIPANT */
-	$("#name-participant").keyup(function(event){
-		if(event.keyCode == 13){
-	    	$('#add-participant-btn').click();
-	    	return false;
-		}
-	});
 	var participant_list_counter = $(".participant-list li").length;
 	/* ADD PARTICIPANT */
 	$('#add-participant-btn').on("click", function(){
  		var name = $("#name-participant").val();
  		if (name != '') {
     		participant_list_counter++;
-    		var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='participant_" + participant_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'>" + name + "<a type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + participant_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='description_" + participant_list_counter + "' class='panel-collapse'><div class='panel-body'> <div class='col-md-6 btn_area'><textarea style='resize: none;'name='participant_description_" + participant_list_counter + "' placeholder='Описание участника, его достижения и др.' class='form-control error' aria-required='true' maxlength='1000' rows='6' required></textarea></div><div class='col-md-3 btn_area text-center'><label>Выберите фотографию участника</label><br><small>допустимые форматы jpeg,png,gif</small><div class='col-md-12 btn_area'><label for='participant_photo_" + participant_list_counter + "' class='btn btn-add-photo'>Выберите фото</label></div></div><div class='col-md-3 btn_area text-center'><div class='file-upload' id='file-upload_" + participant_list_counter + "'><div class='image-preview-wrapper' title=' '><div class='image-preview' id='image-viewer-participant_" + participant_list_counter + "'></div><input type='file' id='participant_photo_" + participant_list_counter + "' name='participant_photo_" + participant_list_counter + "' class='imageUploader' onchange='readURL1(this);'></div></div></div></div></div></div></li>";
+    		var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='participant_" + participant_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'>" + name + "<a type='button' class='pull-right delete-participant' title='Удалить участника' id='delete-participant_" + participant_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='description_" + participant_list_counter + "' class='panel-collapse'><div class='panel-body'> <div class='col-md-6 btn_area'><textarea style='resize: none;' name='participant_description_" + participant_list_counter + "' placeholder='Описание участника, его достижения и др.' class='form-control error' aria-required='true' maxlength='1000' rows='6' required></textarea></div><div class='col-md-3 btn_area text-center'><label>Выберите фотографию участника</label><br><small>допустимые форматы jpeg,png,gif</small><div class='col-md-12 btn_area'><label for='participant_photo_" + participant_list_counter + "' class='btn btn-primary btn-add-photo'>Выберите фото</label></div></div><div class='col-md-3 btn_area text-center'><div class='file-upload' id='file-upload_" + participant_list_counter + "'><div class='image-preview-wrapper' title=' '><div class='image-preview' id='image-viewer-participant_" + participant_list_counter + "'></div><input type='file' id='participant_photo_" + participant_list_counter + "' name='participant_photo_" + participant_list_counter + "' class='imageUploader' onchange='readURL1(this);'></div></div></div></div></div></div></li>";
     		$('.participant-list').append(temp);
     		$("#name-participant").val('');
  		}
@@ -100,7 +94,7 @@
 	 	var name = $("#name-judge").val();
 	 	if (name != '') {
 	    	judge_list_counter++;
-	    	var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='judge_" + judge_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'>" + name + "<a type='button' class='pull-right delete-judge' title='Удалить члена жюри' id='delete-judge_" + judge_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='description_" + judge_list_counter + "' role='tabpanel' class='panel-collapse'><div class='panel-body'> <div class='col-md-6 btn_area'><input name='judge_email_" + judge_list_counter + "' type='email' placeholder='Укажите e-mail члена жюри' class='form-control btn_area' required> <input name='judge_status_" + judge_list_counter + "' type='text' placeholder='Укажите кем является член жюри' class='form-control btn_area' required></div><div class='col-md-3 btn_area text-center'><label>Выберите фотографию участника</label><br><small>допустимые форматы jpeg,png,gif</small><div class='col-md-12 btn_area'><label for='judge_photo_" + judge_list_counter + "' id='btn-add-photo_" + judge_list_counter + "' class='btn btn-add-photo'>Выберите фото</label></div></div><div class='col-md-3 btn_area text-center'><div class='file-upload' id='file-upload_" + judge_list_counter + "'><div class='image-preview-wrapper' title=' '><div class='image-preview' id='image-viewer-judge_" + judge_list_counter + "'></div><input type='file' id='judge_photo_" + judge_list_counter + "' name='judge_photo_" + judge_list_counter + "' class='imageUploader' onchange='readURL2(this);'></div></div></div></div></div></div></li>";
+	    	var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='judge_" + judge_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'>" + name + "<a type='button' class='pull-right delete-judge' title='Удалить члена жюри' id='delete-judge_" + judge_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='description_" + judge_list_counter + "' role='tabpanel' class='panel-collapse'><div class='panel-body'> <div class='col-md-6 btn_area'><input name='judge_email_" + judge_list_counter + "' type='email' placeholder='Укажите e-mail члена жюри' class='form-control btn_area' required> <input name='judge_status_" + judge_list_counter + "' type='text' placeholder='Укажите кем является член жюри' class='form-control btn_area' required></div><div class='col-md-3 btn_area text-center'><label>Выберите фотографию жюри</label><br><small>допустимые форматы jpeg,png,gif</small><div class='col-md-12 btn_area'><label for='judge_photo_" + judge_list_counter + "' id='btn-add-photo_" + judge_list_counter + "' class='btn btn-primary btn-add-photo'>Выберите фото</label></div></div><div class='col-md-3 btn_area text-center'><div class='file-upload' id='file-upload_" + judge_list_counter + "'><div class='image-preview-wrapper' title=' '><div class='image-preview' id='image-viewer-judge_" + judge_list_counter + "'></div><input type='file' id='judge_photo_" + judge_list_counter + "' name='judge_photo_" + judge_list_counter + "' class='imageUploader' onchange='readURL2(this);'></div></div></div></div></div></div></li>";
 	    	$('.judge-list').append(temp);
 	    	$("#name-judge").val('');
 	 	}
@@ -130,7 +124,9 @@
 	 	}
 	 	judge_list_counter--;
 	 	$('.judge-list li').remove(':nth-child(' + number + ')');
-	 	
+	 	if (judge_list_counter == 0) {
+    		$('.btn-submit-judge').prop('disabled', true);
+ 		}
 	});
 	/* SELECT JUDGE PHOTO*/
 	function readURL2(input){
@@ -188,7 +184,7 @@
  		var name = $("#name-stage").val();
  		if (name != '') {
     		stage_list_counter++;
-    		var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='stage_" + stage_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='stage_name_" + stage_list_counter + "' href='#stage_description_" + stage_list_counter + "' aria-controls='stage_description_" + stage_list_counter + "'>" + name + "</a><a type='button' class='pull-right delete-stage' title='Удалить этап' id='delete-stage_" + stage_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='stage_description_" + stage_list_counter + "' class='panel-collapse'><div class='panel-body'> <input name='stage_description_" + stage_list_counter + "' type='text' placeholder='Описание этапа' class='form-control' required> </div></div></div></li>";
+    		var temp = "<li><div class='panel panel-default animated fadeInDown' style='border-color:#5d9cec;'><div id='stage_" + stage_list_counter + "' role='tab' class='panel-heading'><h4 class='panel-title'><a id='stage_name_" + stage_list_counter + "'>" + name + "</a><a type='button' class='pull-right delete-stage' title='Удалить этап' id='delete-stage_" + stage_list_counter + "'><em class='fa fa-times'></em></a></h4></div><div id='stage_description_" + stage_list_counter + "'><div class='panel-body'> <textarea name='stage_description_" + stage_list_counter + "' rows='4' type='text' maxlength='1000' style='resize: none;' placeholder='Описание этапа' class='form-control' required></textarea><ul class='criterion-list_" + stage_list_counter + " row'><!-- criterions --><fieldset class='btn_area'></fieldset><fieldset id='criterion_"+stage_list_counter+"_1' class='row' ><div class='col-md-6 btn_area'><input type='text' name='criterion-name_"+stage_list_counter+"_1' placeholder='Название критерия' class='form-control' maxlength='500' required></div><div class='col-xs-10 col-sm-10 col-md-5 btn_area'><input type='number' placeholder='Максимальный балл' class='form-control' name='criterion-maxscore_"+stage_list_counter+"_1' required></div><div class='col-md-1 col-xs-2 btn_area'><a type='button' id='btn-add-criterion_"+stage_list_counter+"' class='btn-add-criterion btn btn-primary'><i class='fa fa-plus'></i></a></div></fieldset></ul></div></div></li>";
     		$('.stage-list').append(temp);
     		$("#name-stage").val('');
  		}
@@ -217,7 +213,84 @@
  		stage_list_counter--;
  		$('.stage-list li').remove(':nth-child(' + number + ')');
  		if (stage_list_counter == 0) {
-		    $('.btn-submit-judge').prop('disabled', true);
+		    $('.btn-submit-stage').prop('disabled', true);
 	 	}
 	});
+	/* ADD CRITERION */
+	$('.stage-list').on('click','.btn-add-criterion', function (){
+		var snumber = $(this).attr('id');
+ 		snumber = snumber.substr(snumber.lastIndexOf('_')+1,snumber.length);
+ 		var criterion_list_counter = $(".criterion-list_"+snumber+" fieldset").length - 1;
+		criterion_list_counter++;
+		var temp = "<fieldset id='criterion_"+snumber+"_"+criterion_list_counter+"' class='row'><div class='col-md-6 btn_area'><input type='text' name='criterion-name_"+snumber+"_"+ criterion_list_counter +"' placeholder='Название критерия' class='form-control' maxlength='500' required></div><div class='col-xs-10 col-sm-10 col-md-5 btn_area'><input type='number' placeholder='Максимальный балл' class='form-control' name='criterion-maxscore_"+snumber+"_"+ criterion_list_counter +"' required></div><div class='col-md-1 col-xs-2 btn_area'><a type='button' class='btn btn-danger delete-criterion' id='delete-criterion_"+snumber+"_"+ criterion_list_counter +"'><i class='fa fa-times'></i></a></div></fieldset>";
+		$('.criterion-list_'+snumber).append(temp);
+	});
+	/* DELETE CRITERION */
+	$('.stage-list').on('click', '.delete-criterion', function(){
+		var str = $(this).attr('id');
+		str = str.substr(str.lastIndexOf('on_')+3,str.length);
+		var stage_number = str.substr(0,str.indexOf('_'));
+		var criterion_number = str.substr(str.lastIndexOf('_')+1,str.length);
+		var stage = $('.stage-list li:nth-child('+ stage_number +')');
+		var stageHTML = stage.html();
+		
+		criterion_number = parseInt(criterion_number);
+		//alert(stageHTML);
+
+		var idDeletedCriteria = stageHTML.indexOf('id=\"criterion_'+stage_number+'_'+criterion_number) - 15;
+		var DeletedSubs = stageHTML.substr(stageHTML.indexOf('<fieldset', idDeletedCriteria),stageHTML.indexOf('</fieldset', idDeletedCriteria)+11-stageHTML.indexOf('<fieldset', idDeletedCriteria));
+		stageHTML = stageHTML.replace(DeletedSubs,'');		
+
+		var criterionIncCounter = 1;
+		while(stageHTML.indexOf('id=\"criterion_'+stage_number+'_'+(criterion_number+criterionIncCounter)) >= 0)
+		{
+			stageHTML = stageHTML.replace('id=\"criterion_'+stage_number+'_'+(criterion_number+criterionIncCounter),'id=\"criterion_'+stage_number+'_'+(criterion_number+criterionIncCounter-1));
+			stageHTML = stageHTML.replace('name=\"criterion-name_'+stage_number+'_'+(criterion_number+criterionIncCounter), 'name=\"criterion-name_'+stage_number+'_'+(criterion_number+criterionIncCounter-1));
+			stageHTML = stageHTML.replace('name=\"criterion-maxscore_'+stage_number+'_'+(criterion_number+criterionIncCounter), 'name=\"criterion-maxscore_'+stage_number+'_'+(criterion_number+criterionIncCounter-1));
+			stageHTML = stageHTML.replace('id=\"delete-criterion_'+stage_number+'_'+(criterion_number+criterionIncCounter), 'id=\"delete-criterion_'+stage_number+'_'+(criterion_number+criterionIncCounter-1));
+			criterionIncCounter++;
+		}
+		stage.html(stageHTML);
+
+		
+		/*var resultCriteriasHTML = '';
+		for(var i=0; i< criterion_number; i++){
+			var tmpIndex = criteriasHTML.indexOf('</fieldset>') + 11;
+			resultCriteriasHTML+=criteriasHTML.substr(0,tmpIndex);
+			criteriasHTML = criteriasHTML.substr(tmpIndex,criteriasHTML.length);
+		}
+
+		criteriasHTML = criteriasHTML.substr(criteriasHTML.indexOf('</fieldset>') + 11,criteriasHTML.length);
+
+		while(true){
+			criterion_number++;
+			var tmpIndex = criteriasHTML.indexOf("id=\"criterion_"+stage_number+"_"+criterion_number);
+			criterion_number--;
+			
+			if (tmpIndex>0)
+			{
+				resultCriteriasHTML += criteriasHTML.substr(criteriasHTML.indexOf('<fieldset'),tmpIndex+14+stage_number.length+1);
+				resultCriteriasHTML += criterion_number++;
+				resultCriteriasHTML += 
+				criteriasHTML = criteriasHTML.substr(tmpIndex+14+stage_number.length+1+criterion_number.length,criteriasHTML.length);
+				//alert(criteriasHTML);
+				tmpIndex = criteriasHTML.indexOf('</fieldset>') + 11;
+				resultCriteriasHTML += criteriasHTML.substr(0,tmpIndex);
+				criteriasHTML = criteriasHTML.substr(tmpIndex,criteriasHTML.length);
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		stageHTML = stageHTML.substr(0,stageHTML.indexOf('<fieldset>')) + resultCriteriasHTML + stageHTML.substr(0,stageHTML.lastIndexOf('</fieldset>')+11);
+
+		alert(stageHTML);
+
+		/*alert(stage_number);
+		alert(criterion_number);
+		alert(criterion_number.length);	*/
+	});
+
 /* END STAGE */
