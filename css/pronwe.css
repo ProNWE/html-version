@@ -2,14 +2,11 @@
 CONSTANTS
 	ProNWE BLUE - #2f95ea
 }
-
 */
-
 @font-face {
 	font-family: pronwe;
 	src: url(Exo2-Medium.ttf);
 }
-
 .pronwe_Link-small{
 	text-decoration:none!important; 
 }
@@ -29,13 +26,16 @@ CONSTANTS
 .pronwe_color{
 	color:#2f95ea;
 }
+.pronwe_comment{
+	font-size:0.75em;
+	padding-left:1em;
+}
 a{
 	text-decoration:none;
 }
 ul{
 	list-style:none;
 }
-
 .btn_area{
 	margin:1em auto;
 }
@@ -48,16 +48,8 @@ ul{
 	border: 0;
 	padding: 0.45em 1.1em; 
 	line-height: 1.52857143; 	
-	color: #fff;
-    background-color: #23b7e5;
-    border-color: #1eb6e4;
+	color: #fff;   
 }
-.btn:hover{
-	color: #fff;
-    background-color: #1aacda;
-    border-color: #179ac3;
-}
-
 .btn-another{
 	color: #fff;
     background-color: #BDBDBD;
@@ -70,7 +62,6 @@ ul{
 	background-color: #BDBDBD;
     border-color: #757575;
 }
-
 /* UPDATE PHOTO */
 body.stop-scrolling {
     height: 100%;
@@ -161,6 +152,6 @@ button.update-alert-close {
 }
 @media all and (max-width:460px) {
 	.update-alert-choose{
-	width: 60%; 
+	   width: 60%; 
 	}
-}	
+}

@@ -164,6 +164,16 @@
          <div class="aside-inner">
             <nav data-sidebar-anyclick-close="" class="sidebar">
                <ul class="nav">
+                  <!-- USER INFO
+                  <li class="user-block">
+                     <div class="user-block-picture">
+                        <img src="img/user/02.jpg" alt="Avatar" width="150" height="150" class="img-thumbnail img-circle">
+                     </div>
+                     <div class="user-block-info">
+                        <span class="user-block-name">Welcome, name</span>
+                     </div>
+                  </li>-->
+				  <!-- undefined USER INFO-->
                   <li class="user-block">
                      <div class="user-block-picture">
                         <img src="img/user/no-user.png" alt="Avatar" width="150" height="150" class="img-thumbnail img-circle">
@@ -177,7 +187,7 @@
                   <li class="nav-heading">
                      <span>Навигация</span>
                   </li>
-                  <!--<li class=" ">
+                  <li class=" ">
                      <a href="#organisationLink" title="Организации" data-toggle="collapse">
                         <em class="icon-briefcase"></em>
                         <span>Организации</span>
@@ -189,31 +199,38 @@
                               <span>Мои организации</span>
                            </a>
                         </li>
-                  <li class=" ">
+						<li class=" ">
                            <a href="" title="Список организаций">
                               <span>Список организаций</span>
                            </a>
                         </li>
                      </ul>
-                  </li>-->
-                  <li class=" ">
-                     <a href="#eventLink" title="Мои мероприятия" data-toggle="collapse">
+                  </li>
+   				   <li class=" ">
+                     <a href="#eventLink" title="Мероприятия" data-toggle="collapse">
                         <em class="icon-notebook"></em>
-                        <span>Мои мероприятия</span>
+                        <span>Мероприятия</span>
                      </a>
+                     <ul id="eventLink" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Мероприятия</li>
+                        <li class=" ">
+                           <a href="" title="Ближайшие мероприятия">
+                              <span>Ближайшие</span>
+                           </a>
+                        </li>
+   						   <li class=" ">
+                           <a href="" title="Прошедшие мероприятия">
+                              <span>Прошедшие</span>
+                           </a>
+                        </li>
+                     </ul>
                   </li>
                   <li class=" ">
-                     <a href="#eventLink" title="Все мероприятия" data-toggle="collapse">
-                        <em class="icon-list"></em>
-                        <span>Все мероприятия</span>
-                     </a>
-                  </li>
-                  <li class=" ">
-                     <a href="" title="Создать мероприятие" data-toggle="collapse">
+                     <a href="" title="Создать организацию" data-toggle="collapse">
                         <em class="icon-plus"></em>
-                        <span>Создать мероприятие</span>
+                        <span>Создать организацию</span>
                     </a>
-                  </li>
+					</li>
                </ul>
             </nav>
          </div>
@@ -226,28 +243,29 @@
 			<h2>Панель пользователя</h2>
 
             <div class="panel panel-default">
-   				<div class="panel-body">
-                 <div class="row">
-   						<!--<div class="col-md-6 org-list-container">
-   							<h2 style="font-size:1.5em;">Популярные организации</h2>
-   							<ul id="org-list" style="display: inline;">
-   								<li><a href="#" title='Университет ИТМО'><img src="img/temp/itmouniversity.jpg">Университет ИТМО</a></li>
-   								<li><a href="#" title='Какая-то организация'><img src="img/user/no-user.png">Какая-то организация</a></li>
-   								<li class="refresh"><img class="refresh" src="img/refresh.png">Показать еще</li>
-   							</ul>
-                     </div>-->
-                     <div class="col-md-12 event-list-container">
-   							<h2 style="font-size:1.8em;">Ближайшие встречи</h2>
-   							<ul style="padding:0; font-size: 1.3em">
-   								<!-- вывести все в городе для авторизованных. Вывести популярные (или по другому критерию) для неавторизованных  -->
-   								<li><a href="#" title='Мистер ИТМО 2016'><img src="img/temp/misteritmo.png">Мистер ИТМО 2016</a> <small><a href="#" title='Университет ИТМО'>Университет ИТМО</a></small> ДАТА ВРЕМЯ</li>
-   								<li><a href="#" title='Гала-концерт фестиваля "Весна в ИТМО" 2016'><img src="img/temp/vesnavitmo.jpg">Гала-концерт фестиваля "Весна в ИТМО" 2016</a> <small><a href="#" title='Университет ИТМО'>Университет ИТМО</a></small> ДАТА ВРЕМЯ</li>
-   							</ul>
-                     </div>
-                  </div>
+				<div class="panel-body">
+                    <div class="row">
+						<div class="col-md-6 org-list-container">
+							<h2 style="font-size:1.5em;">Популярные организации</h2>
+							<ul id="org-list">
+								<li><a href="#" title='Университет ИТМО'><img src="img/temp/itmouniversity.jpg">Университет ИТМО</a></li>
+								<li><a href="#" title='Какая-то организация'><img src="img/user/no-user.png">Какая-то организация</a></li>
+								<!--<li class="refresh"><img class="refresh" src="img/refresh.png">Показать еще</li>-->
+							</ul>
+                        </div>
+                        
+                        <div class="col-md-6 event-list-container">
+							<h2 style="font-size:1.5em;">Ближайшие встречи</h2>
+							<ul style="padding:0;">
+								<!-- вывести все в городе для авторизованных. Вывести популярные (или по другому критерию) для неавторизованных  -->
+								<li><a href="#" title='Мистер ИТМО 2016'><img src="img/temp/misteritmo.png">Мистер ИТМО 2016</a> <small><a href="#" title='Университет ИТМО'>Университет ИТМО</a></small></li>
+								<li><a href="#" title='Гала-концерт фестиваля "Весна в ИТМО" 2016'><img src="img/temp/vesnavitmo.jpg">Гала-концерт фестиваля "Весна в ИТМО" 2016</a> <small><a href="#" title='Университет ИТМО'>Университет ИТМО</a></small></li>
+							</ul>
+                        </div>
+                    </div>
                </div>
             </div>
-         </div>
+        </div>
     </section>
       
       <!-- FOOTER -->
@@ -275,17 +293,17 @@
    <!-- =============== TWITTER SCRIPTS ===============-->
    <script src="js/twitter.js"></script>
    <script>
-   $.ajax({
+   /*$.ajax({
 	  url: "/ajax/",
 	  cache: false,
 	  success: function(listItems){
 		$(".refresh").remove();
 		$("#orglist").append(listItems).append("<li class='refresh'><a href='#' title='Показать остальные'><img class='refresh' src='img/refresh.png'>Показать еще</a></li>");
-		/*Добавляет элементы списка "популярных организаций" в виде 
+		Добавляет элементы списка "популярных организаций" в виде 
 		<li><a href="адрес на страницу pronwe" title='Название организации'><img src="img/user/no-user.png">Название организации</a></li>
-		*/
+		
 		}
-	});
+	});*/
 	</script>
 
 </body>
