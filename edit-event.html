@@ -18,6 +18,12 @@
    <link rel="stylesheet" href="vendor/animate.css/animate.min.css">
    <!-- PAGE STYLE -->
    <link rel="stylesheet" href="css/newevent.css">
+   <!-- CROPPER-->
+   <link rel="stylesheet" href="vendor/cropper/dist/cropper.css">
+   <!-- CHOSEN-->
+   <link rel="stylesheet" href="vendor/chosen_v1.2.0/chosen.min.css">
+   <!--  THIS PAGE STYLES -->
+   <link rel="stylesheet" href="css/edit-event.css">
 
    <!-- =============== BOOTSTRAP STYLES ===============-->
    <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
@@ -221,10 +227,90 @@
             <!-- EDIT MAIN EVENT INFO -->
             <div class="panel-group">
                <div class="panel panel-default">
-                  <div class="panel-heading panel-title" style="font-size: 1.2em"><a data-toggle="collapse" data-parent="#accordion" href="#eventinfo" aria-expanded="true" aria-controls="eventinfo">Основная информация о мероприятии</a></div>
+                  <div class="panel-heading panel-title" style="font-size: 1.2em"><a data-toggle="collapse" data-parent="#accordion" href="#eventinfo" aria-expanded="true" aria-controls="eventinfo" id="main-info">Основная информация о мероприятии</a></div>
                   <div id="eventinfo" role="tabpanel" aria-labelledby="headingOne" class="panel-collapse collapse">
                      <div class="panel-body">
-
+                        <form id="event-info" class="form-horizontal" method="">
+                           <div class="form-group">
+                              <label for="input-event-name" class="mylabel col-md-2 control-label">Название мероприятия</label>
+                              <div class="col-md-10">
+                                    <input name="input-event-name" type="text" data-validation="length" data-validation-length="5-30" data-validation-error-msg="Название мероприятия должно быть от 5 до 30 символов" class="form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label for="input-event-description" class="mylabel col-md-2 control-label">Описание мероприятия</label>
+                              <div class="col-md-10">
+                                    <textarea id="input-event-description" name="input-event-description" type="text" data-validation="length" data-validation-length="50-1000" data-validation-error-msg="Расскажите о Вашем мероприятие, чтобы все могли узанть о нём (не менее 50 символов)" class="form-control" rows=7 style="resize: none;"></textarea>
+                                    <div class="text-right"><span id="pres-max-length">1000</span> символов осталось</div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label for="input-event-status" class="mylabel col-md-2 control-label">Статус мероприятия</label>
+                              <div class="col-md-10">
+                                 
+                                 <select name="input-event-status" data-validation="length" data-validation-length="min1" data-validation-error-msg="Выберите статус мероприятия, он нужен для поиска мероприятия в системе" class="form-control">
+                                    <option value=""></option>
+                                       <option value="IN">Международное мероприятие</option>
+                                       <option value="FE">Всероссийское мероприятие</option>
+                                       <option value="RE">Региональное мероприятие</option>
+                                       <option value="CI">Городское мероприятие</option>
+                                       <option value="UN">Университетское мероприятие</option>
+                                       <option value="SC">Школьное мероприятие</option>
+                                    </select>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label for="input-event-organization" class="mylabel col-md-2 control-label">Выберите организацию</label>
+                              <div class="col-md-10">
+                                    <select name="input-event-organization" data-validation="length" data-validation-length="min1" data-validation-error-msg="Выберите организацию или организации" multiple class="chosen-select form-control">
+                                       <option value="Университет ИТМО">Университет ИТМО</option>
+                                       <option value="Профком ИТМО">Профком ИТМО</option>
+                                       <option value="Совет обучающихся университета ИТМО">Совет обучающихся университета ИТМО</option>
+                                       <!-- и так далее, делаем запрос из бд,, где располагаются организации  -->
+                                    </select>
+                                    <span class="pronwe_comment help-block m-b-none">* Можно выбрать более одной организации для этого удерживайте Ctrl и выбирайте. Если вашей организации нет в списке, свяжитесь с нами support@pronwe.ru</span>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label for="input-event-start" class="mylabel col-md-2 control-label">Дата начала мероприятия</label>
+                             <div class="col-md-4">
+                                    <input name="input-event-start" type="text" data-validation="date" data-validation-format="dd.mm.yyyy" data-validation-help="дд.мм.гггг" data-validation-error-msg="Введите в формате дд.мм.гггг" class="has-help-txt form-control">
+                              </div>
+                              <label for="input-event-end" class="mylabel col-md-2 control-label">Окачание мероприятия</label>
+                              <div class="col-md-4">
+                                    <input name="input-event-end" type="text" data-validation="date" data-validation-format="dd.mm.yyyy" data-validation-help="дд.мм.гггг" data-validation-error-msg="Введите в формате дд.мм.гггг" class="has-help-txt form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label for="input-event-city" class="mylabel col-md-2 control-label">Город</label>
+                              <div class="col-md-10 ">
+                                 <select name="input-event-city" data-validation="length" data-validation-length="min1" data-validation-error-msg="Выберите город" class="chosen-select form-control">
+                                       <option value=""></option>
+                                       <option value="SPb">Санкт-Петербург</option>
+                                       <option value="Moscow">Москва</option>
+                                       <!-- и так далее, делаем запрос из бд,, где располагаются города РФ  -->
+                                    </select>
+                              </div>
+                           </div>
+                           <div class="form-group btn_area">
+                              <label for="input-event-type" class="mylabel col-md-2 control-label">Тип мероприятия</label>
+                              <div class="col-md-10">
+                                 <select id="1" name="input-event-type" data-validation="length" data-validation-length="min1" data-validation-error-msg="Выберите тип" class="form-control">
+                                    <!-- для value: XYZ == этап(X) участник(Y) критерии(Z) -->
+                                       <option value=""></option>
+                                       <option value="11N">На каждом этапе один участник оценивается по нескольким критериям, затем следует второй участник и т.д.</option>
+                                       <option value="1N1">На каждом этапе несколько участников оцениваются по 1 критерию, затем следующий этап.</option>
+                                    </select>
+                                    <span class="pronwe_comment help-block m-b-none">*Вы можете предложить свой тип мероприятия, отправив подробное описание типа на support@pronwe.ru.</span>
+                              </div>
+                           </div>
+                           <div class="col-md-4 col-sm-5 btn_area"> 
+                              <button type="button" id="update-photo" class="btn btn-primary">Выберите фотографию</button>
+                           </div>
+                           <div class="col-md-4 col-sm-5 col-sm-offset-2 col-md-offset-4" style="margin-top: 1em">
+                              <input type="submit" class="btn btn-primary" value="Сохранить" id="main-info-save" disabled>
+                           </div>
+                        </form>
                      </div>
                   </div>
                </div>
@@ -233,7 +319,7 @@
             <!-- EDIT ADDITIONAL EVENT INFO -->
             <div class="panel-group">
                <div class="panel panel-default">
-                  <div class="panel-heading panel-title" style="font-size: 1.2em"><a data-toggle="collapse" data-parent="#accordion" href="#moreeventinfo" aria-expanded="true" aria-controls="moreeventinfo">Редактирование информации, касающююся участников, жюри и этапов мероприятия</a></div>
+                  <div class="panel-heading panel-title" style="font-size: 1.2em"><a data-toggle="collapse" data-parent="#accordion" href="#moreeventinfo" aria-expanded="true" aria-controls="moreeventinfo" id="extra-info">Редактирование информации, касающююся участников, жюри и этапов мероприятия</a></div>
                   <div id="moreeventinfo" role="tabpanel" aria-labelledby="headingOne" class="panel-collapse collapse in">
                      <div class="panel-body">
                         <div role="tabpanel">
@@ -349,12 +435,95 @@
    <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
    <!-- STORAGE API-->
    <script src="vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
+   <!-- LOCALIZE-->
+   <script src="vendor/jquery-localize-i18n/dist/jquery.localize.js"></script>
+   <!-- JQUERY VALIDATION -->
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js"></script>
+   <!-- CROPPER-->
+   <script src="vendor/cropper/dist/cropper.js"></script>
+   <!-- CHOSEN-->
+   <script src="vendor/chosen_v1.2.0/chosen.jquery.min.js"></script>
+   <!-- NEWEVENT SCRIPT -->
+   <script src="js/event.js"></script>
    <!-- PARTISIPANT JUDGE STAGE CRITERION SCRIPT -->
    <script src="js/pjsc.js"></script>
+
    <!-- =============== APP SCRIPTS ===============-->
    <script src="js/app.js"></script>
    <!-- =============== TWITTER SCRIPTS ===============-->
    <script src="js/twitter.js"></script>
+
+
+
+   <!-- START UPDATE PHOTO -->
+   <div class="update-overlay" tabindex="-1"></div>
+   <div class="update-alert animated" data-allow-outside-click="false" style="display:none">
+      <div class="update-alert-header">
+         <button type="button" class="update-alert-close">Закрыть</button>
+         <h4 class="update-alert-title">Загрузка новой обложки</h4>
+      </div>
+      <div class="update-alert-body">
+         <div id="select-photo">
+            <h5>
+               Загрузите новую обложку для своей страницы мероприятия<br><br>
+               Вы можете загрузить изображение в формате JPG, GIF или PNG.
+            </h5>
+            <br>
+            <div class="row">
+               <label for="inputImage" title="Выберите файл" class="btn btn-choose  btn-primary update-alert-choose">
+               <input id="inputImage" name="file" type="file" accept="image/jpeg,image/gif,image/png" class="sr-only">
+                  <span class="fa fa-upload"> Выберите файл</span>
+               </label>
+            </div>
+            <br>
+            <h5>Если у Вас возникают проблемы с загрузкой, попробуйте выбрать изобржение меньшего размера</h5>
+         </div>
+         
+         <div id="edit-photo" style="display: none;">
+            <h5>Выбранная область будет показываться на Вашей странице.</h5>
+               <br>
+            <div class="img-container mb-lg" >
+               <img id="photo" src="img/no-photo.png" alt="Picture" class="cropper-hidden" >
+            </div>
+            <div class="row">
+               <div class="col-md-6 btn_area">
+                  <button id="save-photo" type="button" class="btn btn-primary">Сохранить</button>   
+               </div>
+               <div class="col-md-6 btn_area">
+                  <button type="button" class="btn btn-another">Выбрать другой файл</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script>
+      $("#update-photo").click(function (){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+         $(".update-overlay").css("display","block");
+         $(".update-alert").removeClass("bounceOut").addClass("bounceIn").css("display","block");
+      });
+      $(".update-alert-close").click(function (){
+         $(".update-alert").removeClass("bounceIn").addClass("bounceOut");
+         $(".update-overlay").css("display","none");
+      });
+      $("#photo").cropper({
+         mouseWheelZoom: false,
+         mavable: false,      
+         built: function () {
+            $("#photo").cropper("setAspectRatio", 1 / 1);
+         }
+      });
+      $("input[type=file]").on("change",function(){
+         $("#select-photo").css("display","none");
+         $("#edit-photo").css("display","block");
+      });
+      $(".btn-another").click(function(){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+      });      
+   </script>
+   <!-- END UPDATE PHOTO -->
 </body>
 
 </html>

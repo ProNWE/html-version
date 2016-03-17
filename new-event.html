@@ -20,15 +20,13 @@
    <link rel="stylesheet" href="vendor/cropper/dist/cropper.css">
    <!-- CHOSEN-->
    <link rel="stylesheet" href="vendor/chosen_v1.2.0/chosen.min.css">
-   
+<link rel="stylesheet" href="css/edit-event.css">   
    <!-- =============== BOOTSTRAP STYLES ===============-->
    <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
    <!-- =============== APP STYLES ===============-->
    <link rel="stylesheet" href="css/app.css" id="maincss">
    <!-- =============== PRONWE STYLES ===============-->
    <link rel="stylesheet" href="css/pronwe.css" id="nwe">
-   <!-- =============== THIS PAGE STYLES ===============-->
-   <link rel="stylesheet" href="css/newevent.css">
 </head>
 
 <body>
@@ -271,7 +269,7 @@
     	                    <div class="col-md-4">
                            		<input name="input-event-start" type="text" data-validation="date" data-validation-format="dd.mm.yyyy" data-validation-help="дд.мм.гггг" data-validation-error-msg="Введите в формате дд.мм.гггг" class="has-help-txt form-control">
                         	</div>
-                        	<label for="input-event-end" class="mylabel col-md-2 control-label">Окачание мероприятия</label>
+                        	<label for="input-event-end" class="mylabel col-md-2 control-label">Дата окачания мероприятия</label>
                         	<div class="col-md-4">
                            		<input name="input-event-end" type="text" data-validation="date" data-validation-format="dd.mm.yyyy" data-validation-help="дд.мм.гггг" data-validation-error-msg="Введите в формате дд.мм.гггг" class="has-help-txt form-control">
                         	</div>
@@ -331,7 +329,7 @@
    <!-- CHOSEN-->
    <script src="vendor/chosen_v1.2.0/chosen.jquery.min.js"></script>
    <!-- NEWEVENT SCRIPT -->
-   <script src="js/newevent.js"></script>
+   <script src="js/event.js"></script>
 
    <!-- =============== APP SCRIPTS ===============-->
    <script src="js/app.js"></script>
@@ -382,6 +380,33 @@
          </div>
       </div>
    </div>
+   <script>
+      $("#update-photo").click(function (){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+         $(".update-overlay").css("display","block");
+         $(".update-alert").removeClass("bounceOut").addClass("bounceIn").css("display","block");
+      });
+      $(".update-alert-close").click(function (){
+         $(".update-alert").removeClass("bounceIn").addClass("bounceOut");
+         $(".update-overlay").css("display","none");
+      });
+      $("#photo").cropper({
+         mouseWheelZoom: false,
+         mavable: false,      
+         built: function () {
+            $("#photo").cropper("setAspectRatio", 1 / 1);
+         }
+      });
+      $("input[type=file]").on("change",function(){
+         $("#select-photo").css("display","none");
+         $("#edit-photo").css("display","block");
+      });
+      $(".btn-another").click(function(){
+         $("#select-photo").css("display","block");
+         $("#edit-photo").css("display","none");
+      });      
+   </script>
    <!-- END UPDATE PHOTO -->
 </body>
 

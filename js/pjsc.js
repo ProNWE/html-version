@@ -251,46 +251,13 @@
 			criterionIncCounter++;
 		}
 		stage.html(stageHTML);
-
-		
-		/*var resultCriteriasHTML = '';
-		for(var i=0; i< criterion_number; i++){
-			var tmpIndex = criteriasHTML.indexOf('</fieldset>') + 11;
-			resultCriteriasHTML+=criteriasHTML.substr(0,tmpIndex);
-			criteriasHTML = criteriasHTML.substr(tmpIndex,criteriasHTML.length);
-		}
-
-		criteriasHTML = criteriasHTML.substr(criteriasHTML.indexOf('</fieldset>') + 11,criteriasHTML.length);
-
-		while(true){
-			criterion_number++;
-			var tmpIndex = criteriasHTML.indexOf("id=\"criterion_"+stage_number+"_"+criterion_number);
-			criterion_number--;
-			
-			if (tmpIndex>0)
-			{
-				resultCriteriasHTML += criteriasHTML.substr(criteriasHTML.indexOf('<fieldset'),tmpIndex+14+stage_number.length+1);
-				resultCriteriasHTML += criterion_number++;
-				resultCriteriasHTML += 
-				criteriasHTML = criteriasHTML.substr(tmpIndex+14+stage_number.length+1+criterion_number.length,criteriasHTML.length);
-				//alert(criteriasHTML);
-				tmpIndex = criteriasHTML.indexOf('</fieldset>') + 11;
-				resultCriteriasHTML += criteriasHTML.substr(0,tmpIndex);
-				criteriasHTML = criteriasHTML.substr(tmpIndex,criteriasHTML.length);
-			}
-			else
-			{
-				break;
-			}
-		}
-
-		stageHTML = stageHTML.substr(0,stageHTML.indexOf('<fieldset>')) + resultCriteriasHTML + stageHTML.substr(0,stageHTML.lastIndexOf('</fieldset>')+11);
-
-		alert(stageHTML);
-
-		/*alert(stage_number);
-		alert(criterion_number);
-		alert(criterion_number.length);	*/
 	});
-
 /* END STAGE */
+$("#main-info").click(function(){
+	$("#moreeventinfo").removeClass("in");
+	$("#main-info-save").prop("disabled",false);
+});
+$("#extra-info").click(function(){
+	$("#eventinfo").removeClass("in");
+	$("#main-info-save").prop("disabled",true);
+});
